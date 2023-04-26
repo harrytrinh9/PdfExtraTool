@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:PdfExtraTool.ChungPages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:customControls="clr-namespace:PdfExtraTool.CustomControls"
       d:DataContext="{d:DesignInstance Type=vm:DanhSoTrangViewModel}"
       mc:Ignorable="d"
       Background="Transparent">
@@ -86,7 +87,9 @@
 
             </Grid>
         </Grid>
-        <ui:ProgressRing Grid.Column="1" IsActive="{Binding IsLoading}" Width="35" Height="35"></ui:ProgressRing>
+        <customControls:PdfViewer Grid.Column="1"
+                                  ViewSource="{Binding PreviewPdf}"/>
+        <!--<ui:ProgressRing Grid.Column="1" IsActive="{Binding IsLoading}" Width="35" Height="35"></ui:ProgressRing>
         <ui:ListView Grid.Column="1" ItemsSource="{Binding PreviewPdf}">
             <ui:ListView.ItemTemplate>
                 <DataTemplate>
@@ -101,7 +104,7 @@
 
                 </DataTemplate>
             </ui:ListView.ItemTemplate>
-        </ui:ListView>
+        </ui:ListView>-->
     </Grid>
 
 </ui:Page>

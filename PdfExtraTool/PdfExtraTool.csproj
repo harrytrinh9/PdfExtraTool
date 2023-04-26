@@ -203,6 +203,9 @@
     <Compile Include="Converters\KBConverter.cs" />
     <Compile Include="Converters\List2TotalPageConverter.cs" />
     <Compile Include="Converters\RevertBoolean.cs" />
+    <Compile Include="CustomControls\PdfViewer.xaml.cs">
+      <DependentUpon>PdfViewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KetHopVaTrichXuatPages\KetHopFile.xaml.cs">
       <DependentUpon>KetHopFile.xaml</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChungPages\LatTrang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\PdfViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
