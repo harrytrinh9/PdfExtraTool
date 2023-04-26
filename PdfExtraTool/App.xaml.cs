@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,6 +19,7 @@ namespace PdfExtraTool
         public App()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
+            //PdfExtraTool.Properties.Resources.Culture = new CultureInfo("vi-VN");
         }
 
 

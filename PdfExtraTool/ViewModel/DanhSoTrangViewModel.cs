@@ -16,11 +16,20 @@ using iText.IO.Font.Constants;
 using iText.Kernel.Pdf.Canvas;
 using PdfExtraTool.Common;
 using PdfRenderByHarryTrinhWpf;
+using System.Resources;
+using System.Globalization;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
+using System.Windows;
+using System.Reflection;
 
 namespace PdfExtraTool.ViewModel
 {
     public class DanhSoTrangViewModel: ViewModelBase
     {
+        public DanhSoTrangViewModel()
+        {
+
+        }
         private string _selectedFile;
         private bool _isOpeningFile;
         private int _totalPage;
@@ -317,7 +326,7 @@ namespace PdfExtraTool.ViewModel
             {
                 System.Diagnostics.Process.Start(s.FileName);
             }
-            await MsgBox.Show(msg, "PDF Extra tool", "Mở xem", Dlg_PrimaryButtonClick).ConfigureAwait(true);
+            await MsgBox.Show(msg, "PDF Extra tool", Properties.Resources.OpenNow, Dlg_PrimaryButtonClick).ConfigureAwait(true);
 
             IsWorking = false;
             StartBtnContent = "Bắt đầu";

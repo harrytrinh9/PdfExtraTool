@@ -118,51 +118,45 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ExtractPage" xml:space="preserve">
-    <value>Extract page</value>
+    <value>Trích xuất trang</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Trợ giúp</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>UI language</value>
+    <value>Ngôn ngữ</value>
   </data>
   <data name="MergeFiles" xml:space="preserve">
-    <value>Merge file</value>
+    <value>Hợp nhất</value>
   </data>
   <data name="NavigationViewGroup1" xml:space="preserve">
-    <value>General</value>
+    <value>Chung</value>
   </data>
   <data name="NavigationViewGroup2" xml:space="preserve">
-    <value>Security</value>
+    <value>Bảo mật</value>
   </data>
   <data name="NavigationViewGroup3" xml:space="preserve">
-    <value>Merge and Extraction</value>
+    <value>Hợp nhất và trích xuất</value>
   </data>
   <data name="OpenNow" xml:space="preserve">
-    <value>Open now</value>
+    <value>Mở ngay</value>
   </data>
   <data name="PageRotate" xml:space="preserve">
-    <value>Page rotation</value>
+    <value>Lật trang</value>
   </data>
   <data name="Paging" xml:space="preserve">
-    <value>Paging</value>
-  </data>
-  <data name="Position" xml:space="preserve">
-    <value>Position</value>
-  </data>
-  <data name="Select" xml:space="preserve">
-    <value>Select</value>
+    <value>Đánh số trang</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Protect by password</value>
+    <value>Đặt mật khẩu</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Cài đặt</value>
   </data>
   <data name="Stamp" xml:space="preserve">
-    <value>Stamping</value>
+    <value>Đóng dấu</value>
   </data>
   <data name="UnsetPassword" xml:space="preserve">
-    <value>Unprotect</value>
+    <value>Gỡ mật khẩu</value>
   </data>
 </root>

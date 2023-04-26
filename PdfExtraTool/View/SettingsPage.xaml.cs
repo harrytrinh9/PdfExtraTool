@@ -25,6 +25,7 @@ namespace PdfExtraTool.View
         public SettingsPage()
         {
             InitializeComponent();
+            DataContext = new ViewModel.SettingsViewModel();
             CbChangeTheme.Text = "Sáng";
         }
 

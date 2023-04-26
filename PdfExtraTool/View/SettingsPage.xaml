@@ -5,8 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:PdfExtraTool.View"
       xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:properties="clr-namespace:PdfExtraTool.Properties"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
+      d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
       Title="SettingsPage">
 
     <Grid Margin="10">
@@ -15,6 +18,15 @@
                 <ComboBoxItem>Sáng</ComboBoxItem>
                 <ComboBoxItem>Tối</ComboBoxItem>
                 <ComboBoxItem>Hệ thống</ComboBoxItem>
+            </ComboBox>
+
+            <ComboBox x:Name="CbChangeLanguage"
+                      ItemsSource="{Binding SupportedLanguage}"
+                      DisplayMemberPath="Display"
+                      SelectedItem="{Binding SelectedLanguage}"
+                      ui:ControlHelper.Header="{x:Static properties:Resources.Language}"
+                      Margin="0 10" Width="120">
+                
             </ComboBox>
         </StackPanel>
     </Grid>
