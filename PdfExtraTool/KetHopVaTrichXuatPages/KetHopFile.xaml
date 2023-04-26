@@ -1,0 +1,71 @@
+﻿<ui:Page x:Class="PdfExtraTool.KetHopVaTrichXuatPages.KetHopFile"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:PdfExtraTool.KetHopVaTrichXuatPages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:converters="clr-namespace:PdfExtraTool.Converters"
+      d:DataContext="{d:DesignInstance Type=vm:KetHopViewModel}"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="KetHopFile">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <converters:KBConverter x:Key="KBConverter"/>
+            <converters:List2TotalPageConverter x:Key="TotalPage"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button  Command="{Binding AddFileToListCommand}">
+                <StackPanel Orientation="Horizontal">
+                    <ui:FontIcon Glyph="&#xe710;"/>
+                    <TextBlock Text="Thêm file" Margin="5 0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <DataGrid x:Name="DGFiles" Grid.Row="1" Margin="10"
+                  Height="250"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  HeadersVisibility="Column"
+                  ItemsSource="{Binding ListInputPdf}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding No}"/>
+                <DataGridTextColumn Header="Tên file" Binding="{Binding FileName}" MaxWidth="650"/>
+                <DataGridTextColumn Header="Cỡ" Binding="{Binding Size, StringFormat=' {0:N0} KB', Converter={StaticResource ResourceKey=KBConverter}}"/>
+                <DataGridTextColumn Header="Số trang" Binding="{Binding PageCount}"/>
+                <DataGridTextColumn Header="Ngày sửa" Binding="{Binding ModifiedDate, StringFormat='dd/MMM/yyyy HH:mm:ss'}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Margin="3" Command="{Binding DataContext.RemoveFileCommand, RelativeSource={RelativeSource AncestorType=ui:Page}}" CommandParameter="{Binding}">
+                                <ui:FontIcon Foreground="DarkRed" Glyph="&#xE711;"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Margin="10 0 0 5" Grid.Row="2" Text="{Binding TotalPage, StringFormat='Tổng số trang: {0:D}'}"/>
+        <PasswordBox Grid.Row="3"
+                     ui:ControlHelper.Header="Đặt mật khẩu sau khi kết hợp"
+                     Width="300" HorizontalAlignment="Left"
+                     Margin="10 0">
+
+        </PasswordBox>
+        <Button Grid.Row="4" Margin="10 10" Command="{Binding MergePdfCommand}">Kết hợp</Button>
+    </Grid>
+</ui:Page>

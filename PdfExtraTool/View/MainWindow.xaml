@@ -1,0 +1,119 @@
+﻿<Window x:Class="PdfExtraTool.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PdfExtraTool.View"
+        xmlns:converters="clr-namespace:PdfExtraTool.Converters"
+        xmlns:viewmodel="clr-namespace:PdfExtraTool.ViewModel"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:ChungPages="clr-namespace:PdfExtraTool.ChungPages"
+        xmlns:BaoMatPages="clr-namespace:PdfExtraTool.BaoMatPages"
+        xmlns:KetHopVaTrichXuatPages="clr-namespace:PdfExtraTool.KetHopVaTrichXuatPages"
+        d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
+        mc:Ignorable="d"
+        x:Name="Window"
+        Title="PDF Extra tool"
+        Width="1200"
+        Height="768"
+        MinWidth="500"
+        MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        ui:TitleBar.ExtendViewIntoTitleBar="True">
+    <Window.Resources>
+        <converters:RevertBoolean x:Key="RevertedBool"/>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+        <DataTemplate x:Key="NavigationViewHeaderTemplate">
+            <TextBlock Text="{Binding}" Margin="12,32,0,0" />
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid
+            x:Name="AppTitleBar"
+            VerticalAlignment="Top"
+            Height="{Binding ElementName=NavView, Path=CompactPaneLength}"
+            Canvas.ZIndex="1"
+            Visibility="{Binding ElementName=Window, Path=(ui:TitleBar.ExtendViewIntoTitleBar), Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" MinWidth="{Binding ElementName=Window, Path=(ui:TitleBar.SystemOverlayRightInset)}" />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                x:Name="AppTitle"
+                Text="{Binding ElementName=Window, Path=Title}"
+                VerticalAlignment="Center"
+                Style="{StaticResource CaptionTextBlockStyle}" />
+        </Grid>
+
+    <ui:NavigationView
+            x:Name="NavView"
+            AlwaysShowHeader="True"
+            Header="{Binding SelectedItem.Content, RelativeSource={RelativeSource Self}, FallbackValue=' '}"
+            HeaderTemplate="{StaticResource NavigationViewHeaderTemplate}"
+            IsBackButtonVisible="Collapsed"
+            IsTitleBarAutoPaddingEnabled="False"
+            IsPaneOpen="True"
+            OpenPaneLength="200"
+            IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}"
+            BackRequested="NavView_BackRequested"
+            ItemInvoked="NavView_ItemInvoked"
+            PaneOpening="NavView_PaneOpening"
+            PaneClosing="NavView_PaneClosing"
+            SelectionChanged="NavView_SelectionChanged"
+            DisplayModeChanged="NavView_DisplayModeChanged">
+            <!--<ui:NavigationView.AutoSuggestBox>
+                <ui:AutoSuggestBox PlaceholderText="Hint text" QueryIcon="Find" />
+            </ui:NavigationView.AutoSuggestBox>-->
+
+            <ui:NavigationView.MenuItems>
+                <ui:NavigationViewItemHeader Content="Chung" />
+
+                <ui:NavigationViewItem Content="Đánh số trang" Tag="{x:Type ChungPages:DanhSoTrang}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xeca5;" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Đóng dấu" Tag="{x:Type ChungPages:DongDau}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe70a;" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Lật trang" Tag="{x:Type ChungPages:LatTrang}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe777;" />
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItemHeader Content="Bảo mật" />
+                <ui:NavigationViewItem Content="Đặt mật khẩu bảo vệ" Tag="{x:Type BaoMatPages:DatMatKhau}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe72e;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Gỡ mật khẩu" Tag="{x:Type BaoMatPages:GoMatKhau}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe785;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItemHeader Content="Kết hợp và trích xuất" />
+                <ui:NavigationViewItem Content="Kết hợp các file" Tag="{x:Type KetHopVaTrichXuatPages:KetHopFile}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xf571;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItem Content="Trích xuất từ file" Tag="{x:Type KetHopVaTrichXuatPages:TrichXuat}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xf406;"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+                <ui:NavigationViewItemHeader Content="Trợ giúp" />
+            </ui:NavigationView.MenuItems>
+
+            <ui:Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
+        </ui:NavigationView>
+    </Grid>
+</Window>

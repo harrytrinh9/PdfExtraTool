@@ -1,0 +1,21 @@
+﻿<ui:Page x:Class="PdfExtraTool.View.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:PdfExtraTool.View"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsPage">
+
+    <Grid Margin="10">
+        <StackPanel>
+            <ComboBox x:Name="CbChangeTheme" Width="120" SelectionChanged="CbChangeTheme_SelectionChanged" ui:ControlHelper.Header="Giao diện">
+                <ComboBoxItem>Sáng</ComboBoxItem>
+                <ComboBoxItem>Tối</ComboBoxItem>
+                <ComboBoxItem>Hệ thống</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</ui:Page>

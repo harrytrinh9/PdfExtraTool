@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1259
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfExtraTool", "PdfExtraTool\PdfExtraTool.csproj", "{30476E1B-05A8-4112-B855-0B75FF19D4D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfRenderByHarryTrinhWpf", "PdfRenderByHarryTrinh\PdfRenderByHarryTrinhWpf.csproj", "{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30476E1B-05A8-4112-B855-0B75FF19D4D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30476E1B-05A8-4112-B855-0B75FF19D4D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30476E1B-05A8-4112-B855-0B75FF19D4D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30476E1B-05A8-4112-B855-0B75FF19D4D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E275617-F897-4EB1-86F2-175CA5BD9A74}
+	EndGlobalSection
+EndGlobal
