@@ -197,8 +197,11 @@
     <Compile Include="ChungPages\LatTrang.xaml.cs">
       <DependentUpon>LatTrang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\DispatcherHelper.cs" />
     <Compile Include="Common\MsgBox.cs" />
     <Compile Include="Common\OpenPdf.cs" />
+    <Compile Include="Common\ThemeHelper.cs" />
+    <Compile Include="Common\ThemeManagerProxy.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="Converters\KBConverter.cs" />
     <Compile Include="Converters\List2TotalPageConverter.cs" />

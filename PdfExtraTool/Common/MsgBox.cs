@@ -1,6 +1,7 @@
 ﻿using ModernWpf;
 using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
+using PdfExtraTool.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace PdfExtraTool.Common
             {
                 Title = title,
                 Content = message,
-                CloseButtonText = "Đóng"
+                CloseButtonText = Resources.Close
             };
             await dlg.ShowAsync().ConfigureAwait(true);
         }
@@ -31,7 +32,7 @@ namespace PdfExtraTool.Common
             {
                 Title = title,
                 PrimaryButtonText = "OK",
-                CloseButtonText = "Đóng",
+                CloseButtonText = Resources.Close,
             };
             var pwdBox = new PasswordBox();
             ControlHelper.SetHeader(pwdBox, "Nhập mật khẩu");
@@ -51,7 +52,7 @@ namespace PdfExtraTool.Common
                 Content = message,
                 PrimaryButtonText = primaryButtonText,
                 PrimaryButtonStyle = btnStyle,
-                CloseButtonText = "Đóng"
+                CloseButtonText = Resources.Close
             };
             dlg.PrimaryButtonClick += primaryButtonClick;
             await dlg.ShowAsync().ConfigureAwait(true);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PdfExtraTool.Common;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,7 +20,20 @@ namespace PdfExtraTool
         public App()
         {
             AppDomain.CurrentDomain.AssemblyResolve += ResolveAssembly;
-            //PdfExtraTool.Properties.Resources.Culture = new CultureInfo("vi-VN");
+
+            var lang = PdfExtraTool.Properties.Settings.Default.Language;
+            if (!string.IsNullOrEmpty(lang))
+            {
+                try
+                {
+                    PdfExtraTool.Properties.Resources.Culture = new CultureInfo(lang);
+                }
+                catch (Exception)
+                {
+                    PdfExtraTool.Properties.Resources.Culture = new CultureInfo("en-US");
+                }
+            }
+            ThemeHelper.SetTheme();
         }
 
 

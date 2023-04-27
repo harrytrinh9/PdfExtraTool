@@ -14,18 +14,17 @@
 
     <Grid Margin="10">
         <StackPanel>
-            <ComboBox x:Name="CbChangeTheme" Width="120" SelectionChanged="CbChangeTheme_SelectionChanged" ui:ControlHelper.Header="Giao diện">
-                <ComboBoxItem>Sáng</ComboBoxItem>
-                <ComboBoxItem>Tối</ComboBoxItem>
-                <ComboBoxItem>Hệ thống</ComboBoxItem>
-            </ComboBox>
-
+            <ComboBox ItemsSource="{Binding Themes}"
+                      DisplayMemberPath="DisplayText"
+                      SelectedItem="{Binding SelectedTheme}"
+                      Width="180" ui:ControlHelper.Header="{x:Static properties:Resources.Theme}"/>
             <ComboBox x:Name="CbChangeLanguage"
                       ItemsSource="{Binding SupportedLanguage}"
                       DisplayMemberPath="Display"
+                      ToolTip="{x:Static properties:Resources.ChangeLanguageNotify}"
                       SelectedItem="{Binding SelectedLanguage}"
                       ui:ControlHelper.Header="{x:Static properties:Resources.Language}"
-                      Margin="0 10" Width="120">
+                      Margin="0 10" Width="180">
                 
             </ComboBox>
         </StackPanel>
