@@ -135,6 +135,9 @@
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="InputPassword" xml:space="preserve">
+    <value>Input password</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>UI language</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
+  </data>
+  <data name="SelectPdfFile" xml:space="preserve">
+    <value>Select the PDF file</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
     <value>Protect by password</value>

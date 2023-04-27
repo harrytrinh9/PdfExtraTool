@@ -115,6 +115,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input password.
+        /// </summary>
+        public static string InputPassword {
+            get {
+                return ResourceManager.GetString("InputPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UI language.
         /// </summary>
         public static string Language {
@@ -210,6 +219,15 @@ namespace PdfExtraTool.Properties {
         public static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select the PDF file.
+        /// </summary>
+        public static string SelectPdfFile {
+            get {
+                return ResourceManager.GetString("SelectPdfFile", resourceCulture);
             }
         }
         

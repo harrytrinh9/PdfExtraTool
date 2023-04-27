@@ -7,6 +7,7 @@
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
       xmlns:customControls="clr-namespace:PdfExtraTool.CustomControls"
+      xmlns:resx="clr-namespace:PdfExtraTool.Properties"
       d:DataContext="{d:DesignInstance Type=vm:DanhSoTrangViewModel}"
       mc:Ignorable="d"
       Background="Transparent">
@@ -28,10 +29,10 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="75"/>
                 </Grid.ColumnDefinitions>
-                <TextBox ui:ControlHelper.Header="Chọn file" Text="{Binding SelectedFile}" Margin="5 0 0 0"/>
+                <TextBox ui:ControlHelper.Header="{x:Static resx:Resources.SelectPdfFile}" Text="{Binding SelectedFile}" Margin="5 0 0 0"/>
                 <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
                 <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
-                    Command="{Binding SelectFileCommand}">Chọn</Button>
+                    Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
             </Grid>
             <Grid Margin="10" Grid.Row="1">
                 <Grid.RowDefinitions>

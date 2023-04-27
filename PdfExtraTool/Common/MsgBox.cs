@@ -35,7 +35,7 @@ namespace PdfExtraTool.Common
                 CloseButtonText = Resources.Close,
             };
             var pwdBox = new PasswordBox();
-            ControlHelper.SetHeader(pwdBox, "Nhập mật khẩu");
+            ControlHelper.SetHeader(pwdBox, Resources.InputPassword);
             dlg.Content = pwdBox;
             dlg.PrimaryButtonClick += (_, __) => Password = pwdBox.Password;
 

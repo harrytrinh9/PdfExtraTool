@@ -161,10 +161,14 @@ namespace PdfExtraTool.ViewModel
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
 
-            var render = new PdfRenderByHarryTrinhWpf.RenderPdf();
-            render.FilePath = SelectedFile;
-            render.Password = openPdfPassword;
-            PreviewPdf = await render.Render().ConfigureAwait(false);
+            if (!string.IsNullOrEmpty(SelectedFile))
+            {
+                var render = new PdfRenderByHarryTrinhWpf.RenderPdf();
+                render.FilePath = SelectedFile;
+                render.Password = openPdfPassword;
+                PreviewPdf = await render.Render().ConfigureAwait(false);
+            }
+
             IsLoading = false;
         }
 
