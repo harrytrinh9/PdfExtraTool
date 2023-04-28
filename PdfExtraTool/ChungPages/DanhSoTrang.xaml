@@ -6,12 +6,16 @@
       xmlns:local="clr-namespace:PdfExtraTool.ChungPages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:converter="clr-namespace:PdfExtraTool.Converters"
       xmlns:customControls="clr-namespace:PdfExtraTool.CustomControls"
       xmlns:resx="clr-namespace:PdfExtraTool.Properties"
       d:DataContext="{d:DesignInstance Type=vm:DanhSoTrangViewModel}"
       mc:Ignorable="d"
       Background="Transparent">
-
+    <ui:Page.Resources>
+        <converter:FileNameConverter x:Key="FileNameCvt"/>
+        <converter:BoolToVisibility x:Key="BooleanToVisibility"/>
+    </ui:Page.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -23,18 +27,23 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid Margin="5 0 0 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="173*"/>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="75"/>
-                </Grid.ColumnDefinitions>
-                <TextBox ui:ControlHelper.Header="{x:Static resx:Resources.SelectPdfFile}" Text="{Binding SelectedFile}" Margin="5 0 0 0"/>
-                <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
-                <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
-                    Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
-            </Grid>
-            <Grid Margin="10" Grid.Row="1">
+            
+            <GroupBox Margin="10 0 0 0" Header="{x:Static resx:Resources.SelectPdfFile}" Grid.ColumnSpan="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="173*"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="75"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" Margin="10 0 0 0"/>
+                    <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
+                    <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
+                Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
+                </Grid>
+            </GroupBox>
+
+            
+            <Grid Margin="10 5 10 0" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -43,7 +52,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox Header="Vị trí" Margin="5">
+                <GroupBox Header="{x:Static resx:Resources.Position}" Margin="5">
                     <StackPanel Margin="5">
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
@@ -51,9 +60,9 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox IsChecked="{Binding IsTopLeft}">Trên trái</CheckBox>
-                            <CheckBox IsChecked="{Binding IsTopCenter}" Grid.Column="1" Margin="10 0">Trên giữa</CheckBox>
-                            <CheckBox IsChecked="{Binding IsTopRight}" Grid.Column="2">Trên phải</CheckBox>
+                            <CheckBox IsChecked="{Binding IsTopLeft}" Content="{x:Static resx:Resources.TopLeft}"/>
+                            <CheckBox IsChecked="{Binding IsTopCenter}" Grid.Column="1" Margin="10 0" Content="{x:Static resx:Resources.TopRight}"/>
+                            <CheckBox IsChecked="{Binding IsTopRight}" Grid.Column="2" Content="{x:Static resx:Resources.TopRight}"/>
                         </Grid>
                         <Grid Margin="0 5">
                             <Grid.ColumnDefinitions>
@@ -61,37 +70,38 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <CheckBox IsChecked="{Binding IsBottomLeft}">Dưới trái</CheckBox>
-                            <CheckBox IsChecked="{Binding IsBottomCenter}" Grid.Column="1" Margin="10 0">Dưới giữa</CheckBox>
-                            <CheckBox IsChecked="{Binding IsBottomRight}" Grid.Column="2">Dưới phải</CheckBox>
+                            <CheckBox IsChecked="{Binding IsBottomLeft}" Content="{x:Static resx:Resources.BottomLeft}"/>
+                            <CheckBox IsChecked="{Binding IsBottomCenter}" Grid.Column="1" Margin="10 0" Content="{x:Static resx:Resources.BottomCenter}"/>
+                            <CheckBox IsChecked="{Binding IsBottomRight}" Grid.Column="2" Content="{x:Static resx:Resources.BottomRight}"/>
                         </Grid>
                         <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
                             <ui:NumberBox Text="{Binding Margin}" Header="Margin" Width="120" Margin="5 0" Padding="5 0" SpinButtonPlacementMode="Inline"/>
-                            <ComboBox ui:ControlHelper.Header="Phông chữ" Width="150" ItemsSource="{Binding ListFont}" SelectedItem="{Binding SelectedFont}">
-
-                            </ComboBox>
-                            <ui:NumberBox Text="{Binding FontSize}" Minimum="0" Margin="10 0" Maximum="20"  Padding="5 0" Width="120" Header="Cỡ chữ" SpinButtonPlacementMode="Inline"/>
+                            <ComboBox ui:ControlHelper.Header="{x:Static resx:Resources.Font}" Width="150" ItemsSource="{Binding ListFont}" SelectedItem="{Binding SelectedFont}"/>
+                            <ui:NumberBox Text="{Binding FontSize}" Minimum="0" Margin="10 0" Maximum="20"  Padding="5 0" Width="120" Header="{x:Static resx:Resources.FontSize}" SpinButtonPlacementMode="Inline"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
                 <StackPanel Grid.Row="1">
 
-                    <TextBox ui:ControlHelper.Header="Cụm từ" Text="{Binding PagingContent}"  Margin="5 0 5 5"
+                    <TextBox ui:ControlHelper.Header="{x:Static resx:Resources.Pharse}" Text="{Binding PagingContent}"  Margin="5 0 5 5"
                              VerticalContentAlignment="Center" Padding="5 0"/>
                 </StackPanel>
-                <TextBlock Grid.Row="2" Text="{Binding TotalPage, StringFormat='Tổng số trang: {0}'}" Margin="5 5 0 0"/>
-                <ProgressBar Grid.Row="3" Value="{Binding ProgressPercentage}"
+                <TextBlock Grid.Row="2" Text="{Binding TotalPage, StringFormat='{x:Static resx:Resources.TotalPage}'}" Margin="5 5 0 0"/>
+                <ProgressBar Grid.Row="3" Value="{Binding Progress}"
                          Maximum="100" Minimum="0" Height="20" Margin="0 3" />
                 <Button Grid.Row="4" Command="{Binding StartPagingCommand}"
                     Margin="5"
-                    Content="{Binding StartBtnContent}"></Button>
+                    Content="{Binding StartBtnContent}"/>
 
             </Grid>
         </Grid>
-        <!--<customControls:PdfViewer Grid.Column="1"
-                                  ViewSource="{Binding PreviewPdf}"/>-->
-        <ui:ProgressRing Grid.Column="1" IsActive="{Binding IsLoading}" Width="35" Height="35"></ui:ProgressRing>
-        <ui:ListView Grid.Column="1" ItemsSource="{Binding PreviewPdf}">
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibility}}">
+            <ui:ProgressRing IsActive="{Binding IsLoading}" Width="35" Height="35"/>
+            <TextBlock Text="{x:Static resx:Resources.GeneratingPreview}" Margin="5"/>
+        </StackPanel>
+
+        <ui:ListView Grid.Column="1" ItemsSource="{Binding PreviewPdf, NotifyOnSourceUpdated=True}">
             <ui:ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="0 3">

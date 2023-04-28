@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BottomCenter" xml:space="preserve">
+    <value>Bottom center</value>
+  </data>
+  <data name="BottomLeft" xml:space="preserve">
+    <value>Bottom left</value>
+  </data>
+  <data name="BottomRight" xml:space="preserve">
+    <value>Bottom right</value>
+  </data>
   <data name="ChangeLanguageNotify" xml:space="preserve">
     <value>The UI language will change at next application start</value>
   </data>
@@ -131,6 +140,15 @@
   </data>
   <data name="ExtractPage" xml:space="preserve">
     <value>Extract page</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="GeneratingPreview" xml:space="preserve">
+    <value>Generating preview</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -165,8 +183,17 @@
   <data name="Paging" xml:space="preserve">
     <value>Paging</value>
   </data>
+  <data name="PagingComplete" xml:space="preserve">
+    <value>Your file was added page number. (if your file have password, it automatically remove)</value>
+  </data>
+  <data name="Pharse" xml:space="preserve">
+    <value>Pharse</value>
+  </data>
   <data name="Position" xml:space="preserve">
     <value>Position</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Save as ...</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
@@ -183,10 +210,28 @@
   <data name="Stamp" xml:space="preserve">
     <value>Stamping</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Theme</value>
   </data>
+  <data name="TopCenter" xml:space="preserve">
+    <value>Top center</value>
+  </data>
+  <data name="TopLeft" xml:space="preserve">
+    <value>Top left</value>
+  </data>
+  <data name="TopRight" xml:space="preserve">
+    <value>Top right</value>
+  </data>
+  <data name="TotalPage" xml:space="preserve">
+    <value>Total page: {0}</value>
+  </data>
   <data name="UnsetPassword" xml:space="preserve">
     <value>Unprotect</value>
+  </data>
+  <data name="Working" xml:space="preserve">
+    <value>Working ...</value>
   </data>
 </root>

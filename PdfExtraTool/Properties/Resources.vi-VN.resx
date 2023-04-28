@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BottomCenter" xml:space="preserve">
+    <value>Dưới giữa</value>
+  </data>
+  <data name="BottomLeft" xml:space="preserve">
+    <value>Dưới trái</value>
+  </data>
+  <data name="BottomRight" xml:space="preserve">
+    <value>Dưới phải</value>
+  </data>
   <data name="ChangeLanguageNotify" xml:space="preserve">
     <value>Ngôn ngữ đã chọn sẽ được áp dụng trong lần khởi động tiếp theo</value>
   </data>
@@ -131,6 +140,15 @@
   </data>
   <data name="ExtractPage" xml:space="preserve">
     <value>Trích xuất trang</value>
+  </data>
+  <data name="Font" xml:space="preserve">
+    <value>Phông chữ</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Cỡ chữ</value>
+  </data>
+  <data name="GeneratingPreview" xml:space="preserve">
+    <value>Đang tạo bản xem trước</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Trợ giúp</value>
@@ -159,11 +177,26 @@
   <data name="OpenNow" xml:space="preserve">
     <value>Mở ngay</value>
   </data>
+  <data name="PageNoPosition" xml:space="preserve">
+    <value>Vị trí đánh số</value>
+  </data>
   <data name="PageRotate" xml:space="preserve">
     <value>Lật trang</value>
   </data>
   <data name="Paging" xml:space="preserve">
     <value>Đánh số trang</value>
+  </data>
+  <data name="PagingComplete" xml:space="preserve">
+    <value>File của bạn đã được đánh số trang thành công. (nếu file có mật khẩu, phần mềm sẽ tự bỏ mật khẩu sau khi đánh số trang)</value>
+  </data>
+  <data name="Pharse" xml:space="preserve">
+    <value>Cụm từ</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Vị trí</value>
+  </data>
+  <data name="SaveAs" xml:space="preserve">
+    <value>Lưu file ...</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Chọn</value>
@@ -180,10 +213,28 @@
   <data name="Stamp" xml:space="preserve">
     <value>Đóng dấu</value>
   </data>
+  <data name="Start" xml:space="preserve">
+    <value>Bắt đầu</value>
+  </data>
   <data name="Theme" xml:space="preserve">
     <value>Chủ đề</value>
   </data>
+  <data name="TopCenter" xml:space="preserve">
+    <value>Trên giữa</value>
+  </data>
+  <data name="TopLeft" xml:space="preserve">
+    <value>Trên trái</value>
+  </data>
+  <data name="TopRight" xml:space="preserve">
+    <value>Trên phải</value>
+  </data>
+  <data name="TotalPage" xml:space="preserve">
+    <value>Tổng số trang: {0}</value>
+  </data>
   <data name="UnsetPassword" xml:space="preserve">
     <value>Gỡ mật khẩu</value>
+  </data>
+  <data name="Working" xml:space="preserve">
+    <value>Đang thực hiện ...</value>
   </data>
 </root>

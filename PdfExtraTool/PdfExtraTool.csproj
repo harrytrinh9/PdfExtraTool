@@ -203,6 +203,7 @@
     <Compile Include="Common\ThemeHelper.cs" />
     <Compile Include="Common\ThemeManagerProxy.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
+    <Compile Include="Converters\FileNameConverter.cs" />
     <Compile Include="Converters\KBConverter.cs" />
     <Compile Include="Converters\List2TotalPageConverter.cs" />
     <Compile Include="Converters\RevertBoolean.cs" />

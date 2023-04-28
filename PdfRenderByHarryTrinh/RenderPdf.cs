@@ -8,6 +8,8 @@ using Windows.Data.Pdf;
 using Windows.Storage.Streams;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace PdfRenderByHarryTrinhWpf
 {
@@ -64,10 +66,31 @@ namespace PdfRenderByHarryTrinhWpf
 
     }
 
-    public class PdfPageView
+    public class PdfPageView : INotifyPropertyChanged
     {
-        public int Page { get; set; }
-        public int TotalPage { get; set; }
-        public BitmapImage Image { get; set; }
+        private int page;
+        private int totalPage;
+        private BitmapImage image;
+
+        public int Page { get => page; set => Set(ref page, value); }
+        public int TotalPage { get => totalPage; set => Set(ref totalPage, value); }
+        public BitmapImage Image { get => image; set => Set(ref image, value); }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Equals(storage, value))
+            {
+                return;
+            }
+
+            storage = value;
+            RaisePropertyChanged(propertyName);
+        }
+
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

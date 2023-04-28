@@ -13,7 +13,7 @@
       Title="SettingsPage">
 
     <Grid Margin="10">
-        <StackPanel>
+        <StackPanel Margin="5 0 0 0">
             <ComboBox ItemsSource="{Binding Themes}"
                       DisplayMemberPath="DisplayText"
                       SelectedItem="{Binding SelectedTheme}"

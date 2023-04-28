@@ -21,6 +21,7 @@ using System.Globalization;
 using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using System.Windows;
 using System.Reflection;
+using PdfExtraTool.Properties;
 
 namespace PdfExtraTool.ViewModel
 {
@@ -38,10 +39,9 @@ namespace PdfExtraTool.ViewModel
         private float _margin = 20;
         private ICommand _selectFileCommand;
         private ICommand _startPagingCommand;
-        private string _startBtnContent = "Bắt đầu";
+        private string _startBtnContent = Resources.Start;
         private bool _isLoading;
         private string _pagingContent = "Page";
-        private double _progressPercentage;
         private bool _isTopLeft;
         private bool _isTopCenter;
         private bool _isTopRight;
@@ -50,6 +50,7 @@ namespace PdfExtraTool.ViewModel
         private bool _isBottomRight;
         private string[] _listFont = new string[]{ "HELVETICA", "HELVETICA_OBLIQUE", "HELVETICA_BOLD", "HELVETICA_BOLDOBLIQUE", "COURIER", "COURIER_OBLIQUE", "COURIER_BOLD", "COURIER_BOLDOBLIQUE", "TIMES_ROMAN", "TIMES_ITALIC", "TIMES_BOLD" };
         private string _selectedFont = "HELVETICA";
+        private double _progress;
 
         private string openPdfPassword;
         private List<PdfPageView> _previewPdf;
@@ -89,18 +90,12 @@ namespace PdfExtraTool.ViewModel
             set => _startPagingCommand = value;
         }
 
-        public bool IsLoading { get => _isLoading; set => SetProperty(ref _isLoading, value); }
+        public bool IsLoading { get => _isLoading; set => Set(ref _isLoading, value); }
 
         public string PagingContent
         {
             get => _pagingContent;
             set => SetProperty(ref _pagingContent, value);
-        }
-
-        public double ProgressPercentage
-        {
-            get => _progressPercentage;
-            set => SetProperty(ref _progressPercentage, value);
         }
 
         public bool IsTopLeft
@@ -140,7 +135,12 @@ namespace PdfExtraTool.ViewModel
         }
         public string[] ListFont { get => _listFont; set => SetProperty(ref _listFont, value); }
         public string SelectedFont { get => _selectedFont; set => SetProperty(ref _selectedFont, value); }
-        public List<PdfPageView> PreviewPdf { get => _previewPdf; set => SetProperty(ref _previewPdf, value); }
+        public List<PdfPageView> PreviewPdf
+        { 
+            get => _previewPdf; 
+            set => Set(ref _previewPdf, value); 
+        }
+        public double Progress { get => _progress; set => Set(ref _progress, value); }
 
         private bool CanStart()
         {
@@ -152,8 +152,10 @@ namespace PdfExtraTool.ViewModel
 
         private async void SelectFile()
         {
-            IsLoading = true;
+            PreviewPdf = null;
+
             var openPdf = new OpenPdf();
+            IsLoading = true;
             //IsLoading = openPdf.IsLoading;
             await openPdf.Open().ConfigureAwait(true);
             //IsLoading = openPdf.IsLoading;
@@ -169,6 +171,7 @@ namespace PdfExtraTool.ViewModel
                 PreviewPdf = await render.Render().ConfigureAwait(false);
             }
 
+
             IsLoading = false;
         }
 
@@ -176,16 +179,17 @@ namespace PdfExtraTool.ViewModel
         private async void StartPaging()
         {
             IsWorking = true;
-            StartBtnContent = "Đang đánh số trang...";
+            StartBtnContent = Resources.Working;
 
             var s = new SaveFileDialog
             {
-                Title = "Lưu file ...",
-                Filter = "PDF|*.pdf",
+                Title = Resources.SaveAs,
+                Filter = "PDF|*.pdf|All file|*.*",
                 FileName = $"{System.IO.Path.GetFileNameWithoutExtension(SelectedFile)}_paged.pdf"
             };
             if (s.ShowDialog() == false)
             {
+                StartBtnContent = Resources.Start;
                 return;
             }
             var pdfWriter = new PdfWriter(s.FileName);
@@ -200,6 +204,7 @@ namespace PdfExtraTool.ViewModel
             {
                 pdfReader = new PdfReader(SelectedFile);
             }
+
             #region Fonts
             var pdfDoc = new PdfDocument(pdfReader, pdfWriter);
             PdfFont font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
@@ -321,11 +326,12 @@ namespace PdfExtraTool.ViewModel
                         .EndText();
                 }
 
-
+                Progress = (double)i / TotalPage * 100;
+                await Task.Delay(1).ConfigureAwait(true);
             }
             pdfDoc.Close();
             //pdfDoc.GetPage(1).SetRotation(90);
-            const string msg = "File của bạn đã được đánh số trang thành công.\n(nếu file có mật khẩu, phần mềm sẽ tự bỏ mật khẩu sau khi đánh số trang)";
+            string msg = Resources.PagingComplete;
             void Dlg_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
             {
                 System.Diagnostics.Process.Start(s.FileName);
@@ -333,7 +339,7 @@ namespace PdfExtraTool.ViewModel
             await MsgBox.Show(msg, "PDF Extra tool", Properties.Resources.OpenNow, Dlg_PrimaryButtonClick).ConfigureAwait(true);
 
             IsWorking = false;
-            StartBtnContent = "Bắt đầu";
+            StartBtnContent = Resources.Start;
             SelectedFile = null;
             TotalPage = 0;
 

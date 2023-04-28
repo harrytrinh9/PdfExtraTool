@@ -61,6 +61,33 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottom center.
+        /// </summary>
+        public static string BottomCenter {
+            get {
+                return ResourceManager.GetString("BottomCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom left.
+        /// </summary>
+        public static string BottomLeft {
+            get {
+                return ResourceManager.GetString("BottomLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom right.
+        /// </summary>
+        public static string BottomRight {
+            get {
+                return ResourceManager.GetString("BottomRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The UI language will change at next application start.
         /// </summary>
         public static string ChangeLanguageNotify {
@@ -102,6 +129,33 @@ namespace PdfExtraTool.Properties {
         public static string ExtractPage {
             get {
                 return ResourceManager.GetString("ExtractPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string Font {
+            get {
+                return ResourceManager.GetString("Font", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string FontSize {
+            get {
+                return ResourceManager.GetString("FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating preview.
+        /// </summary>
+        public static string GeneratingPreview {
+            get {
+                return ResourceManager.GetString("GeneratingPreview", resourceCulture);
             }
         }
         
@@ -205,11 +259,38 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your file was added page number. (if your file have password, it automatically remove).
+        /// </summary>
+        public static string PagingComplete {
+            get {
+                return ResourceManager.GetString("PagingComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pharse.
+        /// </summary>
+        public static string Pharse {
+            get {
+                return ResourceManager.GetString("Pharse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Position.
         /// </summary>
         public static string Position {
             get {
                 return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save as ....
+        /// </summary>
+        public static string SaveAs {
+            get {
+                return ResourceManager.GetString("SaveAs", resourceCulture);
             }
         }
         
@@ -259,6 +340,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string Start {
+            get {
+                return ResourceManager.GetString("Start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         public static string Theme {
@@ -268,11 +358,56 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Top center.
+        /// </summary>
+        public static string TopCenter {
+            get {
+                return ResourceManager.GetString("TopCenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top left.
+        /// </summary>
+        public static string TopLeft {
+            get {
+                return ResourceManager.GetString("TopLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Top right.
+        /// </summary>
+        public static string TopRight {
+            get {
+                return ResourceManager.GetString("TopRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total page: {0}.
+        /// </summary>
+        public static string TotalPage {
+            get {
+                return ResourceManager.GetString("TotalPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unprotect.
         /// </summary>
         public static string UnsetPassword {
             get {
                 return ResourceManager.GetString("UnsetPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Working ....
+        /// </summary>
+        public static string Working {
+            get {
+                return ResourceManager.GetString("Working", resourceCulture);
             }
         }
     }
