@@ -192,6 +192,9 @@
   <data name="Position" xml:space="preserve">
     <value>Position</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as ...</value>
   </data>

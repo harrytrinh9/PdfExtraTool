@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace PdfExtraTool.ViewModel
 {
@@ -50,7 +51,7 @@ namespace PdfExtraTool.ViewModel
                     Theme = ApplicationTheme.Dark
                 }
             };
-            SelectedLanguage = SupportedLanguage.FirstOrDefault(x => x.Code == currentLanguage);
+            _selectedLanguage = SupportedLanguage.FirstOrDefault(x => x.Code == currentLanguage);
 
             var useDefaultTheme = Settings.Default.UseDefaultTheme;
             if (useDefaultTheme)
@@ -78,6 +79,7 @@ namespace PdfExtraTool.ViewModel
         private Language _selectedLanguage;
         private List<AppTheme> _themes;
         private AppTheme _selectedTheme;
+        private ICommand _restartAppCommand;
 
         public List<Language> SupportedLanguage { get => _supportedLanguage; set => SetProperty(ref _supportedLanguage, value); }
         public Language SelectedLanguage
@@ -113,6 +115,23 @@ namespace PdfExtraTool.ViewModel
             }
         }
 
+        public ICommand RestartAppCommand
+        {
+            get 
+            {
+                if (_restartAppCommand == null)
+                {
+                    _restartAppCommand = new RelayCommand(_ => RestartApp());
+                }
+                return _restartAppCommand; 
+            }
+            set => _restartAppCommand = value;
+        }
+
+        private void RestartApp()
+        {
+            throw new NotImplementedException();
+        }
 
         public class Language
         {

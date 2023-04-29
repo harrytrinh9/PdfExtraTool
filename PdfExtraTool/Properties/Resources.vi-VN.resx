@@ -195,6 +195,9 @@
   <data name="Position" xml:space="preserve">
     <value>Vị trí</value>
   </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Khởi động lại</value>
+  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Lưu file ...</value>
   </data>
