@@ -159,8 +159,23 @@
   <data name="Language" xml:space="preserve">
     <value>Ngôn ngữ</value>
   </data>
+  <data name="Later" xml:space="preserve">
+    <value>Để sau</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Sáng</value>
+  </data>
+  <data name="MarginBottom" xml:space="preserve">
+    <value>Lề dưới</value>
+  </data>
+  <data name="MarginLeft" xml:space="preserve">
+    <value>Lề trái</value>
+  </data>
+  <data name="MarginRight" xml:space="preserve">
+    <value>Lề phải</value>
+  </data>
+  <data name="MarginTop" xml:space="preserve">
+    <value>Lề trên</value>
   </data>
   <data name="MergeFiles" xml:space="preserve">
     <value>Hợp nhất</value>
@@ -197,6 +212,12 @@
   </data>
   <data name="Restart" xml:space="preserve">
     <value>Khởi động lại</value>
+  </data>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>Cần khởi động lại ứng dụng để áp dụng ngôn ngữ bạn đã chọn.</value>
+  </data>
+  <data name="RestartRequired" xml:space="preserve">
+    <value>Khởi động lại ứng dụng</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Lưu file ...</value>

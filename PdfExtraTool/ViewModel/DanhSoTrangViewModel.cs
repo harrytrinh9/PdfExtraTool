@@ -31,12 +31,12 @@ namespace PdfExtraTool.ViewModel
         {
 
         }
+
         private string _selectedFile;
         private bool _isOpeningFile;
         private int _totalPage;
         private bool _isWorking;
         private float _fontSize = 11;
-        private float _margin = 20;
         private ICommand _selectFileCommand;
         private ICommand _startPagingCommand;
         private string _startBtnContent = Resources.Start;
@@ -46,7 +46,7 @@ namespace PdfExtraTool.ViewModel
         private bool _isTopCenter;
         private bool _isTopRight;
         private bool _isBottomLeft;
-        private bool _isBottomCenter;
+        private bool _isBottomCenter = true;
         private bool _isBottomRight;
         private string[] _listFont = new string[]{ "HELVETICA", "HELVETICA_OBLIQUE", "HELVETICA_BOLD", "HELVETICA_BOLDOBLIQUE", "COURIER", "COURIER_OBLIQUE", "COURIER_BOLD", "COURIER_BOLDOBLIQUE", "TIMES_ROMAN", "TIMES_ITALIC", "TIMES_BOLD" };
         private string _selectedFont = "HELVETICA";
@@ -54,15 +54,24 @@ namespace PdfExtraTool.ViewModel
 
         private string openPdfPassword;
         private List<PdfPageView> _previewPdf;
+        private float _topMargin = 15;
+        private float _leftMargin = 20;
+        private float _rightMargin = 20;
+        private float _bottomMargin = 15;
 
-
-        public int TotalPage { get => _totalPage; set => SetProperty(ref _totalPage, value);}
-        public bool IsOpeningFile{ get => _isOpeningFile; set => SetProperty(ref _isOpeningFile, value);}
-        public string SelectedFile { get => _selectedFile; set => SetProperty(ref _selectedFile, value);}
-        public bool IsWorking{ get => _isWorking;  set => SetProperty(ref _isWorking, value);}
-        public float FontSize { get => _fontSize; set => SetProperty(ref _fontSize, value); }
-        public float Margin { get => _margin; set => SetProperty(ref _margin, value);}
-        public string StartBtnContent{ get => _startBtnContent; set => SetProperty(ref _startBtnContent, value); }
+        public int TotalPage { get => _totalPage; set => Set(ref _totalPage, value);}
+        public bool IsOpeningFile{ get => _isOpeningFile; set => Set(ref _isOpeningFile, value);}
+        public string SelectedFile
+        {
+            get => _selectedFile;
+            set
+            {
+                Set(ref _selectedFile, value);
+            }
+        }
+        public bool IsWorking{ get => _isWorking;  set => Set(ref _isWorking, value);}
+        public float FontSize { get => _fontSize; set => Set(ref _fontSize, value); }
+        public string StartBtnContent{ get => _startBtnContent; set => Set(ref _startBtnContent, value); }
 
         public ICommand SelectFileCommand
         {
@@ -76,6 +85,7 @@ namespace PdfExtraTool.ViewModel
             }
             set => _selectFileCommand = value;
         }
+
         public ICommand StartPagingCommand
         {
             get
@@ -95,52 +105,57 @@ namespace PdfExtraTool.ViewModel
         public string PagingContent
         {
             get => _pagingContent;
-            set => SetProperty(ref _pagingContent, value);
+            set => Set(ref _pagingContent, value);
         }
 
         public bool IsTopLeft
         {
             get => _isTopLeft;
-            set => SetProperty(ref _isTopLeft, value);
+            set => Set(ref _isTopLeft, value);
         }
 
         public bool IsTopCenter
         {
             get => _isTopCenter;
-            set => SetProperty(ref _isTopCenter, value);
+            set => Set(ref _isTopCenter, value);
         }
 
         public bool IsTopRight
         {
             get => _isTopRight;
-            set => SetProperty(ref _isTopRight, value);
+            set => Set(ref _isTopRight, value);
         }
 
         public bool IsBottomLeft
         {
             get => _isBottomLeft;
-            set => SetProperty(ref _isBottomLeft, value);
+            set => Set(ref _isBottomLeft, value);
         }
 
         public bool IsBottomCenter
         {
             get => _isBottomCenter;
-            set => SetProperty(ref _isBottomCenter, value);
+            set => Set(ref _isBottomCenter, value);
         }
 
         public bool IsBottomRight
         {
             get => _isBottomRight;
-            set => SetProperty(ref _isBottomRight, value);
+            set => Set(ref _isBottomRight, value);
         }
-        public string[] ListFont { get => _listFont; set => SetProperty(ref _listFont, value); }
-        public string SelectedFont { get => _selectedFont; set => SetProperty(ref _selectedFont, value); }
+
+        public string[] ListFont { get => _listFont; set => Set(ref _listFont, value); }
+        public string SelectedFont { get => _selectedFont; set => Set(ref _selectedFont, value); }
         public List<PdfPageView> PreviewPdf
         { 
             get => _previewPdf; 
             set => Set(ref _previewPdf, value); 
         }
         public double Progress { get => _progress; set => Set(ref _progress, value); }
+        public float TopMargin { get => _topMargin; set => Set(ref _topMargin, value); }
+        public float LeftMargin { get => _leftMargin; set => Set(ref _leftMargin, value); }
+        public float RightMargin { get => _rightMargin; set => Set(ref _rightMargin, value); }
+        public float BottomMargin { get => _bottomMargin; set => Set(ref _bottomMargin, value); }
 
         private bool CanStart()
         {
@@ -273,8 +288,8 @@ namespace PdfExtraTool.ViewModel
                 string _pagingStr = string.Format("{0} {1} / {2}", PagingContent, i, TotalPage);
                 if (IsTopLeft)
                 {
-                    posX = page.GetPageSize().GetLeft() + Margin;
-                    posY = page.GetPageSize().GetTop() - Margin;
+                    posX = page.GetPageSize().GetLeft() + LeftMargin;
+                    posY = page.GetPageSize().GetTop() - TopMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
@@ -283,7 +298,7 @@ namespace PdfExtraTool.ViewModel
                 if (IsTopCenter)
                 {
                     posX = page.GetPageSize().GetWidth() / 2;
-                    posY = page.GetPageSize().GetTop() - Margin;
+                    posY = page.GetPageSize().GetTop() - TopMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
@@ -291,8 +306,8 @@ namespace PdfExtraTool.ViewModel
                 }
                 if (IsTopRight)
                 {
-                    posX = page.GetPageSize().GetRight() - Margin - FontSize - _pagingStr.Length - 20;
-                    posY = page.GetPageSize().GetTop() - Margin;
+                    posX = page.GetPageSize().GetRight() - RightMargin - FontSize - _pagingStr.Length - 20;
+                    posY = page.GetPageSize().GetTop() - TopMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
@@ -300,8 +315,8 @@ namespace PdfExtraTool.ViewModel
                 }
                 if (IsBottomLeft)
                 {
-                    posX = page.GetPageSize().GetLeft() + Margin;
-                    posY = page.GetPageSize().GetBottom() + Margin;
+                    posX = page.GetPageSize().GetLeft() + LeftMargin;
+                    posY = page.GetPageSize().GetBottom() + BottomMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
@@ -310,7 +325,7 @@ namespace PdfExtraTool.ViewModel
                 if (IsBottomCenter)
                 {
                     posX = page.GetPageSize().GetWidth() / 2;
-                    posY = page.GetPageSize().GetBottom() + Margin;
+                    posY = page.GetPageSize().GetBottom() + BottomMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
@@ -318,8 +333,8 @@ namespace PdfExtraTool.ViewModel
                 }
                 if (IsBottomRight)
                 {
-                    posX = page.GetPageSize().GetWidth() - Margin - FontSize - _pagingStr.Length - 20;
-                    posY = page.GetPageSize().GetBottom() + Margin;
+                    posX = page.GetPageSize().GetWidth() - RightMargin - FontSize - _pagingStr.Length - 20;
+                    posY = page.GetPageSize().GetBottom() + BottomMargin;
                     canvas.BeginText().SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)

@@ -1,4 +1,5 @@
 ﻿using ModernWpf;
+using ModernWpf.Controls;
 using MVVMHelper;
 using PdfExtraTool.Common;
 using PdfExtraTool.Properties;
@@ -80,20 +81,25 @@ namespace PdfExtraTool.ViewModel
         private List<AppTheme> _themes;
         private AppTheme _selectedTheme;
         private ICommand _restartAppCommand;
+        private bool _needRestart;
 
         public List<Language> SupportedLanguage { get => _supportedLanguage; set => SetProperty(ref _supportedLanguage, value); }
+
         public Language SelectedLanguage
         {
             get => _selectedLanguage;
             set
             {
-                SetProperty(ref _selectedLanguage, value);
+                Set(ref _selectedLanguage, value);
                 Settings.Default.Language = SelectedLanguage.Code;
                 Settings.Default.Save();
+                NeedRestart = true;
+                RestartApp();
             }
         }
 
         public List<AppTheme> Themes { get => _themes; set => Set(ref _themes, value); }
+
         public AppTheme SelectedTheme
         {
             get => _selectedTheme;
@@ -121,16 +127,25 @@ namespace PdfExtraTool.ViewModel
             {
                 if (_restartAppCommand == null)
                 {
-                    _restartAppCommand = new RelayCommand(_ => RestartApp());
+                    _restartAppCommand = new RelayCommand(_ => RestartApp(), _=> NeedRestart);
                 }
                 return _restartAppCommand; 
             }
             set => _restartAppCommand = value;
         }
 
-        private void RestartApp()
+        public bool NeedRestart { get => _needRestart; set => Set(ref _needRestart, value); }
+
+        private async void RestartApp()
         {
-            throw new NotImplementedException();
+            void Yes(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+            {
+                System.Windows.Application.Current.Shutdown();
+                System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
+            }
+            void No(ContentDialog sender, ContentDialogButtonClickEventArgs args) { }
+            await MsgBox.ShowYesNo(Resources.RestartMessage, Resources.RestartRequired, Resources.Restart, Resources.Later, Yes, No);
+
         }
 
         public class Language

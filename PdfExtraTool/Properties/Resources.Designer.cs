@@ -187,11 +187,56 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Later.
+        /// </summary>
+        public static string Later {
+            get {
+                return ResourceManager.GetString("Later", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Light.
         /// </summary>
         public static string Light {
             get {
                 return ResourceManager.GetString("Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margin Bottom.
+        /// </summary>
+        public static string MarginBottom {
+            get {
+                return ResourceManager.GetString("MarginBottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margin Left.
+        /// </summary>
+        public static string MarginLeft {
+            get {
+                return ResourceManager.GetString("MarginLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margin Right.
+        /// </summary>
+        public static string MarginRight {
+            get {
+                return ResourceManager.GetString("MarginRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Margin Top.
+        /// </summary>
+        public static string MarginTop {
+            get {
+                return ResourceManager.GetString("MarginTop", resourceCulture);
             }
         }
         
@@ -291,6 +336,24 @@ namespace PdfExtraTool.Properties {
         public static string Restart {
             get {
                 return ResourceManager.GetString("Restart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Need to restart application to apply your selected language..
+        /// </summary>
+        public static string RestartMessage {
+            get {
+                return ResourceManager.GetString("RestartMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart Required.
+        /// </summary>
+        public static string RestartRequired {
+            get {
+                return ResourceManager.GetString("RestartRequired", resourceCulture);
             }
         }
         

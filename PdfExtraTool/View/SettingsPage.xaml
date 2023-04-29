@@ -11,8 +11,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
       Title="SettingsPage">
-
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="55"/>
+        </Grid.RowDefinitions>
         <StackPanel Margin="5 0 0 0">
             <ComboBox ItemsSource="{Binding Themes}"
                       DisplayMemberPath="DisplayText"
@@ -31,9 +34,20 @@
                 </ComboBox>
                 <Button Margin="10 0 0 10" Content="{x:Static properties:Resources.Restart}"
                         VerticalAlignment="Bottom"
-                        Command="{Binding RestartAppCommand}"></Button>
+                        Command="{Binding RestartAppCommand}"
+                        Visibility="{Binding NeedRestart, Converter={StaticResource Bool2VisibilityConverter}}"></Button>
             </StackPanel>
 
         </StackPanel>
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <TextBlock>This application was created by: Harry Trinh</TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Github: " VerticalAlignment="Center"/>
+                    <ui:HyperlinkButton Margin="5 0 0 0" NavigateUri="https://github.com/harrytrinh9/PdfExtraTool">https://github.com/harrytrinh9/PdfExtraTool</ui:HyperlinkButton>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </ui:Page>

@@ -159,8 +159,23 @@
   <data name="Language" xml:space="preserve">
     <value>UI language</value>
   </data>
+  <data name="Later" xml:space="preserve">
+    <value>Later</value>
+  </data>
   <data name="Light" xml:space="preserve">
     <value>Light</value>
+  </data>
+  <data name="MarginBottom" xml:space="preserve">
+    <value>Margin Bottom</value>
+  </data>
+  <data name="MarginLeft" xml:space="preserve">
+    <value>Margin Left</value>
+  </data>
+  <data name="MarginRight" xml:space="preserve">
+    <value>Margin Right</value>
+  </data>
+  <data name="MarginTop" xml:space="preserve">
+    <value>Margin Top</value>
   </data>
   <data name="MergeFiles" xml:space="preserve">
     <value>Merge file</value>
@@ -194,6 +209,12 @@
   </data>
   <data name="Restart" xml:space="preserve">
     <value>Restart</value>
+  </data>
+  <data name="RestartMessage" xml:space="preserve">
+    <value>Need to restart application to apply your selected language.</value>
+  </data>
+  <data name="RestartRequired" xml:space="preserve">
+    <value>Restart Required</value>
   </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as ...</value>

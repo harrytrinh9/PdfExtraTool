@@ -13,6 +13,8 @@
                 <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
+            <BooleanToVisibilityConverter x:Key="Bool2VisibilityConverter"/>
         </ResourceDictionary>
+        
     </Application.Resources>
 </Application>

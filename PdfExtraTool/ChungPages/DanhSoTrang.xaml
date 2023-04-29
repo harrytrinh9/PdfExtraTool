@@ -74,9 +74,20 @@
                             <CheckBox IsChecked="{Binding IsBottomCenter}" Grid.Column="1" Margin="10 0" Content="{x:Static resx:Resources.BottomCenter}"/>
                             <CheckBox IsChecked="{Binding IsBottomRight}" Grid.Column="2" Content="{x:Static resx:Resources.BottomRight}"/>
                         </Grid>
+                        <Grid Margin="0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <ui:NumberBox Value="{Binding LeftMargin}" Header="{x:Static resx:Resources.MarginLeft}" SpinButtonPlacementMode="Compact" />
+                            <ui:NumberBox Value="{Binding TopMargin}" Header="{x:Static resx:Resources.MarginTop}" Grid.Column="1" Margin="10 0 0 0" SpinButtonPlacementMode="Compact"/>
+                            <ui:NumberBox Value="{Binding RightMargin}" Header="{x:Static resx:Resources.MarginRight}" Grid.Column="2" Margin="10 0 0 0" SpinButtonPlacementMode="Compact" />
+                            <ui:NumberBox Value="{Binding BottomMargin}" Header="{x:Static resx:Resources.MarginBottom}" Grid.Column="3" Margin="10 0 0 0" SpinButtonPlacementMode="Compact"/>
+                        </Grid>
                         <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
-                            <ui:NumberBox Text="{Binding Margin}" Header="Margin" Width="120" Margin="5 0" Padding="5 0" SpinButtonPlacementMode="Inline"/>
-                            <ComboBox ui:ControlHelper.Header="{x:Static resx:Resources.Font}" Width="150" ItemsSource="{Binding ListFont}" SelectedItem="{Binding SelectedFont}"/>
+                            <ComboBox ui:ControlHelper.Header="{x:Static resx:Resources.Font}" Width="180" ItemsSource="{Binding ListFont}" SelectedItem="{Binding SelectedFont}"/>
                             <ui:NumberBox Text="{Binding FontSize}" Minimum="0" Margin="10 0" Maximum="20"  Padding="5 0" Width="120" Header="{x:Static resx:Resources.FontSize}" SpinButtonPlacementMode="Inline"/>
                         </StackPanel>
                     </StackPanel>

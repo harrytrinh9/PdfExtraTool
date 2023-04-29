@@ -45,19 +45,36 @@ namespace PdfExtraTool.Common
 
         public async static Task Show(string message, string title, string primaryButtonText, TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> primaryButtonClick)
         {
-            var btnStyle = Application.Current.FindResource("AccentButtonStyle") as Style;
+            var accentBtnStyle = Application.Current.FindResource("AccentButtonStyle") as Style;
             var dlg = new ContentDialog
             {
                 Title = title,
                 Content = message,
                 PrimaryButtonText = primaryButtonText,
-                PrimaryButtonStyle = btnStyle,
+                PrimaryButtonStyle = accentBtnStyle,
                 CloseButtonText = Resources.Close
             };
             dlg.PrimaryButtonClick += primaryButtonClick;
             await dlg.ShowAsync().ConfigureAwait(true);
         }
 
+        public async static Task ShowYesNo(string message, string title, string yesBtnText, string noBtnText,
+            TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> yesBtnClick,
+            TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> noBtnClick)
+        {
+            var accentBtnStyle = Application.Current.FindResource("AccentButtonStyle") as Style;
+            var dlg = new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                PrimaryButtonText = yesBtnText,
+                PrimaryButtonStyle = accentBtnStyle,
+                SecondaryButtonText = noBtnText,
+            };
+            dlg.PrimaryButtonClick += yesBtnClick;
+            dlg.SecondaryButtonClick += noBtnClick;
+            await dlg.ShowAsync().ConfigureAwait(true);
+        }
 
     }
 }
