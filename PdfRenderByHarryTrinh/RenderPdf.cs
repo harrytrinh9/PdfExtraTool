@@ -18,8 +18,8 @@ namespace PdfRenderByHarryTrinhWpf
         private PdfDocument pdfDocument;
         public string FilePath { get; set; }
         public string Password { get; set; }
-        const int WrongPassword = unchecked((int)0x8007052b); // HRESULT_FROM_WIN32(ERROR_WRONG_PASSWORD)
-        const int GenericFail = unchecked((int)0x80004005);   // E_FAIL
+        //const int WrongPassword = unchecked((int)0x8007052b); // HRESULT_FROM_WIN32(ERROR_WRONG_PASSWORD)
+        //const int GenericFail = unchecked((int)0x80004005);   // E_FAIL
         public async Task<List<PdfPageView>> Render()
         {
             var file = await Windows.Storage.StorageFile.GetFileFromPathAsync(FilePath);

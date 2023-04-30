@@ -210,6 +210,9 @@
     <Compile Include="CustomControls\PdfViewer.xaml.cs">
       <DependentUpon>PdfViewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\RotationControlBox.xaml.cs">
+      <DependentUpon>RotationControlBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="KetHopVaTrichXuatPages\KetHopFile.xaml.cs">
       <DependentUpon>KetHopFile.xaml</DependentUpon>
     </Compile>
@@ -291,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\PdfViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\RotationControlBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

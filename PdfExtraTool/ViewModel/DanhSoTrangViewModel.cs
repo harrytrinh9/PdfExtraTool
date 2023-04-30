@@ -23,6 +23,7 @@ using System.Windows;
 using System.Reflection;
 using PdfExtraTool.Properties;
 using System.Windows.Media;
+using System.Collections.ObjectModel;
 
 namespace PdfExtraTool.ViewModel
 {
@@ -56,7 +57,7 @@ namespace PdfExtraTool.ViewModel
         private double _progress;
 
         private string openPdfPassword;
-        private List<PdfPageView> _previewPdf;
+        private ObservableCollection<PdfPageView> _previewPdf = new ObservableCollection<PdfPageView>();
         private float _topMargin = 15;
         private float _leftMargin = 20;
         private float _rightMargin = 20;
@@ -114,7 +115,7 @@ namespace PdfExtraTool.ViewModel
 
         public string[] ListFont { get => _listFont; set => Set(ref _listFont, value); }
         public string SelectedFont { get => _selectedFont; set => Set(ref _selectedFont, value); }
-        public List<PdfPageView> PreviewPdf
+        public ObservableCollection<PdfPageView> PreviewPdf
         { 
             get => _previewPdf; 
             set => Set(ref _previewPdf, value); 
@@ -156,7 +157,7 @@ namespace PdfExtraTool.ViewModel
 
         private async void SelectFile()
         {
-            PreviewPdf = null;
+            PreviewPdf.Clear();
 
             var openPdf = new OpenPdf();
             IsLoading = true;
@@ -174,7 +175,15 @@ namespace PdfExtraTool.ViewModel
                     FilePath = SelectedFile,
                     Password = openPdfPassword
                 };
-                PreviewPdf = await render.Render().ConfigureAwait(false);
+                var pages = await render.Render().ConfigureAwait(false);
+                foreach (var item in pages)
+                {
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        PreviewPdf.Add(item);
+                    });
+    
+                };
             }
             IsLoading = false;
         }

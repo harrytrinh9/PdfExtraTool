@@ -6,32 +6,69 @@
       xmlns:local="clr-namespace:PdfExtraTool.ChungPages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:resx="clr-namespace:PdfExtraTool.Properties"
+      xmlns:converter="clr-namespace:PdfExtraTool.Converters"
+      xmlns:customControls="clr-namespace:PdfExtraTool.CustomControls"
       d:DataContext="{d:DesignInstance Type=vm:LatTrangViewModel}"
+      VerticalAlignment="Top"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LatTrang">
-
+    <ui:Page.Resources>
+        <converter:FileNameConverter x:Key="FileNameCvt"/>
+    </ui:Page.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-        <Grid Margin="5 0 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="173*"/>
-                <ColumnDefinition />
-                <ColumnDefinition Width="75"/>
-            </Grid.ColumnDefinitions>
-            <TextBox ui:ControlHelper.Header="Chọn file" Text="{Binding SelectedFile}" Margin="5 0 0 0"/>
-            <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
-            <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
-                    Command="{Binding SelectFileCommand}">Chọn</Button>
-        </Grid>
-        <DataGrid Grid.Row="1" Margin="5 5 5 0" AutoGenerateColumns="False" CanUserAddRows="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Trang"/>
-                <DataGridTextColumn Header="Hành động"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <GroupBox Margin="10 0 0 0" Header="{x:Static resx:Resources.SelectPdfFile}" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="173*"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="75"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" Margin="10 0 0 0"/>
+                <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
+                Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
+            </Grid>
+        </GroupBox>
+        <ui:ListView Grid.Row="1" ItemsSource="{Binding PreviewPage}"
+                     Margin="10 0"
+                     Background="LightGray">
+            <ui:ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0 12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" MinWidth="150" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Image}" MaxHeight="250">
+                            <Image.RenderTransform>
+                                <RotateTransform Angle="{Binding Orientation}"/>
+                            </Image.RenderTransform>
+                            <Image.RenderTransformOrigin>
+                                <Point X="0.5" Y="0.5"/>
+                            </Image.RenderTransformOrigin>
+                        </Image>
+                        <StackPanel Grid.Column="1" Margin="12 0 0 0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Page}"/>
+                                <TextBlock Text=" / "/>
+                                <TextBlock Text="{Binding TotalPage}"/>
+                            </StackPanel>
+                            <ui:NumberBox Value="{Binding Orientation}"
+                                          Header="Rotation (degree)"
+                                          Maximum="270" Minimum="0" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline" />
+                            <!--<customControls:RotationControlBox Value="{Binding Orientation}" x:Name="rt"/>-->
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ui:ListView.ItemTemplate>
+        </ui:ListView>
+        <Button Grid.Row="2" Margin="10 0" Command="{Binding SaveFileCommand}">Save change</Button>
     </Grid>
 </ui:Page>
