@@ -25,5 +25,17 @@ namespace PdfExtraTool.ChungPages
             InitializeComponent();
             DataContext = new ViewModel.DanhSoTrangViewModel();
         }
+
+        private void ColorButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Extract the color of the button that was clicked.
+            Button clickedColor = (Button)sender;
+            var rectangle = (Rectangle)clickedColor.Content;
+            var color = ((SolidColorBrush)rectangle.Fill).Color;
+
+            CurrentColor.Fill = new SolidColorBrush(color);
+
+            myColorButton.Flyout.Hide();
+        }
     }
 }

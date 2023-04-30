@@ -16,10 +16,21 @@ namespace PdfExtraTool.Common
     {
         public async static Task Show(string message, string title = "")
         {
+            var scrollViewer = new ScrollViewer
+            {
+                CanContentScroll = true,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+            };
+            var textBlock = new TextBlock
+            {
+                Text = message,
+                TextWrapping = TextWrapping.Wrap
+            };
+            scrollViewer.Content = textBlock;
             var dlg = new ContentDialog
             {
                 Title = title,
-                Content = message,
+                Content = scrollViewer,
                 CloseButtonText = Resources.Close
             };
             await dlg.ShowAsync().ConfigureAwait(true);
@@ -46,10 +57,21 @@ namespace PdfExtraTool.Common
         public async static Task Show(string message, string title, string primaryButtonText, TypedEventHandler<ContentDialog, ContentDialogButtonClickEventArgs> primaryButtonClick)
         {
             var accentBtnStyle = Application.Current.FindResource("AccentButtonStyle") as Style;
+            var scrollViewer = new ScrollViewer
+            {
+                CanContentScroll = true,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+            };
+            var textBlock = new TextBlock
+            {
+                Text = message,
+                TextWrapping = TextWrapping.Wrap
+            };
+            scrollViewer.Content = textBlock;
             var dlg = new ContentDialog
             {
                 Title = title,
-                Content = message,
+                Content = scrollViewer,
                 PrimaryButtonText = primaryButtonText,
                 PrimaryButtonStyle = accentBtnStyle,
                 CloseButtonText = Resources.Close

@@ -76,7 +76,7 @@ namespace PdfExtraTool
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.ToString(), "Dispatcher Unhandled Exception");
+            Task task = MsgBox.Show(e.Exception.ToString(), "Dispatcher Unhandled Exception");
 #if DEBUG
             Console.WriteLine(e.Exception.ToString());
             Console.WriteLine(e.Exception.StackTrace);

@@ -19,10 +19,10 @@ using PdfExtraTool.Common;
 using PdfRenderByHarryTrinhWpf;
 using System.Resources;
 using System.Globalization;
-using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using System.Windows;
 using System.Reflection;
 using PdfExtraTool.Properties;
+using System.Windows.Media;
 
 namespace PdfExtraTool.ViewModel
 {
@@ -38,8 +38,10 @@ namespace PdfExtraTool.ViewModel
         private int _totalPage;
         private bool _isWorking;
         private float _fontSize = 11;
+        private iText.Kernel.Colors.Color _fontColor = ColorConstants.BLACK;
         private ICommand _selectFileCommand;
         private ICommand _startPagingCommand;
+        private ICommand _changeFontColorCommand;
         private string _startBtnContent = Resources.Start;
         private bool _isLoading;
         private string _pagingContent = "Page";
@@ -62,14 +64,7 @@ namespace PdfExtraTool.ViewModel
 
         public int TotalPage { get => _totalPage; set => Set(ref _totalPage, value);}
         public bool IsOpeningFile{ get => _isOpeningFile; set => Set(ref _isOpeningFile, value);}
-        public string SelectedFile
-        {
-            get => _selectedFile;
-            set
-            {
-                Set(ref _selectedFile, value);
-            }
-        }
+        public string SelectedFile { get => _selectedFile; set => Set(ref _selectedFile, value);}
         public bool IsWorking{ get => _isWorking;  set => Set(ref _isWorking, value);}
         public float FontSize { get => _fontSize; set => Set(ref _fontSize, value); }
         public string StartBtnContent{ get => _startBtnContent; set => Set(ref _startBtnContent, value); }
@@ -103,47 +98,19 @@ namespace PdfExtraTool.ViewModel
 
         public bool IsLoading { get => _isLoading; set => Set(ref _isLoading, value); }
 
-        public string PagingContent
-        {
-            get => _pagingContent;
-            set => Set(ref _pagingContent, value);
-        }
+        public string PagingContent { get => _pagingContent; set => Set(ref _pagingContent, value);}
 
-        public bool IsTopLeft
-        {
-            get => _isTopLeft;
-            set => Set(ref _isTopLeft, value);
-        }
+        public bool IsTopLeft { get => _isTopLeft; set => Set(ref _isTopLeft, value);}
 
-        public bool IsTopCenter
-        {
-            get => _isTopCenter;
-            set => Set(ref _isTopCenter, value);
-        }
+        public bool IsTopCenter{ get => _isTopCenter;set => Set(ref _isTopCenter, value);}
 
-        public bool IsTopRight
-        {
-            get => _isTopRight;
-            set => Set(ref _isTopRight, value);
-        }
+        public bool IsTopRight { get => _isTopRight;set => Set(ref _isTopRight, value); }
 
-        public bool IsBottomLeft
-        {
-            get => _isBottomLeft;
-            set => Set(ref _isBottomLeft, value);
-        }
+        public bool IsBottomLeft { get => _isBottomLeft; set => Set(ref _isBottomLeft, value);}
 
-        public bool IsBottomCenter
-        {
-            get => _isBottomCenter;
-            set => Set(ref _isBottomCenter, value);
-        }
+        public bool IsBottomCenter { get => _isBottomCenter;  set => Set(ref _isBottomCenter, value);}
 
-        public bool IsBottomRight
-        {
-            get => _isBottomRight;
-            set => Set(ref _isBottomRight, value);
-        }
+        public bool IsBottomRight { get => _isBottomRight; set => Set(ref _isBottomRight, value);}
 
         public string[] ListFont { get => _listFont; set => Set(ref _listFont, value); }
         public string SelectedFont { get => _selectedFont; set => Set(ref _selectedFont, value); }
@@ -157,6 +124,27 @@ namespace PdfExtraTool.ViewModel
         public float LeftMargin { get => _leftMargin; set => Set(ref _leftMargin, value); }
         public float RightMargin { get => _rightMargin; set => Set(ref _rightMargin, value); }
         public float BottomMargin { get => _bottomMargin; set => Set(ref _bottomMargin, value); }
+        public ICommand ChangeFontColorCommand
+        {
+            get
+            {
+                if (_changeFontColorCommand == null)
+                {
+                    _changeFontColorCommand = new RelayCommand(color => ChangeFontColor(color));
+                }
+                return _changeFontColorCommand;
+            }
+            set => _changeFontColorCommand = value;
+        }
+
+        public iText.Kernel.Colors.Color FontColor { get => _fontColor; set => Set(ref _fontColor, value); }
+
+        private void ChangeFontColor(object content)
+        {
+            var rectangle = (System.Windows.Shapes.Rectangle)content;
+            var color = ((SolidColorBrush)rectangle.Fill).Color;
+            FontColor = new DeviceRgb(color.R, color.G, color.B);
+        }
 
         private bool CanStart()
         {
@@ -181,13 +169,13 @@ namespace PdfExtraTool.ViewModel
 
             if (!string.IsNullOrEmpty(SelectedFile))
             {
-                var render = new RenderPdf();
-                render.FilePath = SelectedFile;
-                render.Password = openPdfPassword;
+                RenderPdf render = new RenderPdf
+                {
+                    FilePath = SelectedFile,
+                    Password = openPdfPassword
+                };
                 PreviewPdf = await render.Render().ConfigureAwait(false);
             }
-
-
             IsLoading = false;
         }
 
@@ -220,8 +208,6 @@ namespace PdfExtraTool.ViewModel
             {
                 pdfReader = new PdfReader(SelectedFile);
             }
-
-
 
             #region Fonts
             var pdfDoc = new PdfDocument(pdfReader, pdfWriter);
@@ -279,7 +265,7 @@ namespace PdfExtraTool.ViewModel
                 string _pagingStr = string.Format("{0} {1} / {2}", PagingContent, i, TotalPage);
                 PdfPage page = pdfDoc.GetPage(i);
                 PdfCanvas canvas = new PdfCanvas(page);
-                canvas.SetColor(ColorConstants.RED, true);
+                canvas.SetColor(FontColor, true);
                 canvas.SetFontAndSize(font, FontSize);
 
                 //canvas.BeginText().ShowText(_pagingContent);
@@ -300,7 +286,6 @@ namespace PdfExtraTool.ViewModel
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
-
                 }
                 if (IsTopCenter)
                 {
@@ -362,11 +347,12 @@ namespace PdfExtraTool.ViewModel
 
             IsWorking = false;
             StartBtnContent = Resources.Start;
-            //SelectedFile = null;
+            SelectedFile = null;
             TotalPage = 0;
 
         }
 
+        
 
 
     }
