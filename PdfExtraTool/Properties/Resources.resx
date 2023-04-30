@@ -144,6 +144,9 @@
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>
+  <data name="FontColor" xml:space="preserve">
+    <value>Font color</value>
+  </data>
   <data name="FontSize" xml:space="preserve">
     <value>Font size</value>
   </data>

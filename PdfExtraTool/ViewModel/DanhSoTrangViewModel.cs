@@ -1,5 +1,9 @@
 ﻿using iText.Kernel.Exceptions;
 using iText.Kernel.Pdf;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
+using iText.Kernel.Pdf.Canvas;
+using iText.Kernel.Colors;
 using Microsoft.Win32;
 using ModernWpf.Controls;
 using MVVMHelper;
@@ -11,9 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ModernWpf.Controls.Primitives;
-using iText.Kernel.Font;
-using iText.IO.Font.Constants;
-using iText.Kernel.Pdf.Canvas;
 using PdfExtraTool.Common;
 using PdfRenderByHarryTrinhWpf;
 using System.Resources;
@@ -180,7 +181,7 @@ namespace PdfExtraTool.ViewModel
 
             if (!string.IsNullOrEmpty(SelectedFile))
             {
-                var render = new PdfRenderByHarryTrinhWpf.RenderPdf();
+                var render = new RenderPdf();
                 render.FilePath = SelectedFile;
                 render.Password = openPdfPassword;
                 PreviewPdf = await render.Render().ConfigureAwait(false);
@@ -219,6 +220,8 @@ namespace PdfExtraTool.ViewModel
             {
                 pdfReader = new PdfReader(SelectedFile);
             }
+
+
 
             #region Fonts
             var pdfDoc = new PdfDocument(pdfReader, pdfWriter);
@@ -271,9 +274,15 @@ namespace PdfExtraTool.ViewModel
 
             for (int i = 1; i <= TotalPage; i++)
             {
+                float posX;
+                float posY;
+                string _pagingStr = string.Format("{0} {1} / {2}", PagingContent, i, TotalPage);
                 PdfPage page = pdfDoc.GetPage(i);
                 PdfCanvas canvas = new PdfCanvas(page);
+                canvas.SetColor(ColorConstants.RED, true);
+                canvas.SetFontAndSize(font, FontSize);
 
+                //canvas.BeginText().ShowText(_pagingContent);
                 //var pageSize = page.GetPageSize();
                 //var left = pageSize.GetLeft();
                 //var top = pageSize.GetTop();
@@ -283,23 +292,21 @@ namespace PdfExtraTool.ViewModel
                 //var height = pageSize.GetHeight();
 
 
-                float posX;
-                float posY;
-                string _pagingStr = string.Format("{0} {1} / {2}", PagingContent, i, TotalPage);
                 if (IsTopLeft)
                 {
                     posX = page.GetPageSize().GetLeft() + LeftMargin;
                     posY = page.GetPageSize().GetTop() - TopMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText()
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
+
                 }
                 if (IsTopCenter)
                 {
                     posX = page.GetPageSize().GetWidth() / 2;
                     posY = page.GetPageSize().GetTop() - TopMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText() //.SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
@@ -308,7 +315,7 @@ namespace PdfExtraTool.ViewModel
                 {
                     posX = page.GetPageSize().GetRight() - RightMargin - FontSize - _pagingStr.Length - 20;
                     posY = page.GetPageSize().GetTop() - TopMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText() //.SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
@@ -317,7 +324,7 @@ namespace PdfExtraTool.ViewModel
                 {
                     posX = page.GetPageSize().GetLeft() + LeftMargin;
                     posY = page.GetPageSize().GetBottom() + BottomMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText() //.SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
@@ -326,7 +333,7 @@ namespace PdfExtraTool.ViewModel
                 {
                     posX = page.GetPageSize().GetWidth() / 2;
                     posY = page.GetPageSize().GetBottom() + BottomMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText() //.SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
@@ -335,7 +342,7 @@ namespace PdfExtraTool.ViewModel
                 {
                     posX = page.GetPageSize().GetWidth() - RightMargin - FontSize - _pagingStr.Length - 20;
                     posY = page.GetPageSize().GetBottom() + BottomMargin;
-                    canvas.BeginText().SetFontAndSize(font, FontSize)
+                    canvas.BeginText() //.SetFontAndSize(font, FontSize)
                         .MoveText(posX, posY)
                         .ShowText(_pagingStr)
                         .EndText();
@@ -355,7 +362,7 @@ namespace PdfExtraTool.ViewModel
 
             IsWorking = false;
             StartBtnContent = Resources.Start;
-            SelectedFile = null;
+            //SelectedFile = null;
             TotalPage = 0;
 
         }

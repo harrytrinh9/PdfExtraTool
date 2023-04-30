@@ -14,7 +14,6 @@
       Background="Transparent">
     <ui:Page.Resources>
         <converter:FileNameConverter x:Key="FileNameCvt"/>
-        <converter:BoolToVisibility x:Key="BooleanToVisibility"/>
     </ui:Page.Resources>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
@@ -89,6 +88,7 @@
                         <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
                             <ComboBox ui:ControlHelper.Header="{x:Static resx:Resources.Font}" Width="180" ItemsSource="{Binding ListFont}" SelectedItem="{Binding SelectedFont}"/>
                             <ui:NumberBox Text="{Binding FontSize}" Minimum="0" Margin="10 0" Maximum="20"  Padding="5 0" Width="120" Header="{x:Static resx:Resources.FontSize}" SpinButtonPlacementMode="Inline"/>
+                            <ComboBox ui:ControlHelper.Header="{x:Static resx:Resources.FontColor}" Width="120"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
@@ -107,7 +107,7 @@
             </Grid>
         </Grid>
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Visibility="{Binding IsLoading,Converter={StaticResource BooleanToVisibility}}">
+                    Visibility="{Binding IsLoading,Converter={StaticResource Bool2VisibilityConverter}}">
             <ui:ProgressRing IsActive="{Binding IsLoading}" Width="35" Height="35"/>
             <TextBlock Text="{x:Static resx:Resources.GeneratingPreview}" Margin="5"/>
         </StackPanel>

@@ -144,6 +144,9 @@
   <data name="Font" xml:space="preserve">
     <value>Phông chữ</value>
   </data>
+  <data name="FontColor" xml:space="preserve">
+    <value>Màu chữ</value>
+  </data>
   <data name="FontSize" xml:space="preserve">
     <value>Cỡ chữ</value>
   </data>

@@ -142,6 +142,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Font color.
+        /// </summary>
+        public static string FontColor {
+            get {
+                return ResourceManager.GetString("FontColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font size.
         /// </summary>
         public static string FontSize {
