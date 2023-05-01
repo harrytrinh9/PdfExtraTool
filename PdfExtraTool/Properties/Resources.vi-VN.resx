@@ -195,6 +195,9 @@
   <data name="OpenNow" xml:space="preserve">
     <value>Mở ngay</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>Trang</value>
+  </data>
   <data name="PageNoPosition" xml:space="preserve">
     <value>Vị trí đánh số</value>
   </data>
@@ -222,8 +225,20 @@
   <data name="RestartRequired" xml:space="preserve">
     <value>Khởi động lại ứng dụng</value>
   </data>
+  <data name="RotationDegree" xml:space="preserve">
+    <value>Lật trang (độ)</value>
+  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Lưu file ...</value>
+  </data>
+  <data name="SaveChange" xml:space="preserve">
+    <value>Lưu thay đổi</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Đã lưu</value>
+  </data>
+  <data name="SaveSucess" xml:space="preserve">
+    <value>File của bạn đã được lưu thành công tại: {0}</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Chọn</value>

@@ -36,39 +36,45 @@
                 Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
             </Grid>
         </GroupBox>
-        <ui:ListView Grid.Row="1" ItemsSource="{Binding PreviewPage}"
+        <ui:ScrollViewerEx Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding PreviewPage}"
                      Margin="10 0"
                      Background="LightGray">
-            <ui:ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0 12">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" MinWidth="150" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Image}" MaxHeight="250">
-                            <Image.RenderTransform>
-                                <RotateTransform Angle="{Binding Orientation}"/>
-                            </Image.RenderTransform>
-                            <Image.RenderTransformOrigin>
-                                <Point X="0.5" Y="0.5"/>
-                            </Image.RenderTransformOrigin>
-                        </Image>
-                        <StackPanel Grid.Column="1" Margin="12 0 0 0">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Page}"/>
-                                <TextBlock Text=" / "/>
-                                <TextBlock Text="{Binding TotalPage}"/>
-                            </StackPanel>
-                            <ui:NumberBox Value="{Binding Orientation}"
-                                          Header="Rotation (degree)"
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" MinWidth="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}" Height="250" Width="250">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="{Binding Orientation}"/>
+                                </Image.RenderTransform>
+                                <Image.RenderTransformOrigin>
+                                    <Point X="0.5" Y="0.5"/>
+                                </Image.RenderTransformOrigin>
+                            </Image>
+                            <StackPanel Grid.Column="1" Margin="12 0 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                    <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Page}"  FontWeight="Bold"/>
+                                    <TextBlock Text=" / "  FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding TotalPage}"  FontWeight="Bold"/>
+                                </StackPanel>
+                                <ui:NumberBox Value="{Binding Orientation}"
+                                          HorizontalAlignment="Left"
+                                          Width="150"
+                                          Header="{x:Static resx:Resources.RotationDegree}"
                                           Maximum="270" Minimum="0" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline" />
-                            <!--<customControls:RotationControlBox Value="{Binding Orientation}" x:Name="rt"/>-->
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ui:ListView.ItemTemplate>
-        </ui:ListView>
-        <Button Grid.Row="2" Margin="10 0" Command="{Binding SaveFileCommand}">Save change</Button>
+                                <!--<customControls:RotationControlBox Value="{Binding Orientation}" x:Name="rt"/>-->
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ui:ScrollViewerEx>
+
+        <Button Grid.Row="2" Margin="10 0" Command="{Binding SaveFileCommand}" Content="{x:Static resx:Resources.SaveChange}"></Button>
     </Grid>
 </ui:Page>

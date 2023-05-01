@@ -129,7 +129,7 @@ namespace PdfExtraTool.View
                 Type pageType = GetPageType(menuItem);
                 if (ContentFrame.CurrentSourcePageType != pageType)
                 {
-                    ContentFrame.Navigate(pageType, null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                    ContentFrame.Navigate(pageType, null, new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromBottom });
                 }
             }
         }

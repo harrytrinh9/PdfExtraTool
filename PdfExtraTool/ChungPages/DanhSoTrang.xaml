@@ -217,22 +217,24 @@
             <ui:ProgressRing IsActive="{Binding IsLoading}" Width="35" Height="35"/>
             <TextBlock Text="{x:Static resx:Resources.GeneratingPreview}" Margin="5"/>
         </StackPanel>
-
-        <ui:ListView Grid.Column="1" ItemsSource="{Binding PreviewPdf, NotifyOnSourceUpdated=True}">
-            <ui:ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="0 5" Background="LightGray">
-                        <Image Source="{Binding Image}" Margin="0 0 0 5" MaxHeight="550"/>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <TextBlock Text="{Binding Page}"/>
-                            <TextBlock Text=" / "/>
-                            <TextBlock Text="{Binding TotalPage}"/>
+        <ui:ScrollViewerEx Grid.Column="1">
+            <ItemsControl ItemsSource="{Binding PreviewPdf, NotifyOnSourceUpdated=True}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0 5" Background="LightGray">
+                            <Image Source="{Binding Image}" Margin="0 0 0 5" MaxHeight="550"/>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Static resx:Resources.Page}"/>
+                                <TextBlock Text="{Binding Page}"/>
+                                <TextBlock Text=" / "/>
+                                <TextBlock Text="{Binding TotalPage}"/>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ui:ScrollViewerEx>
 
-                </DataTemplate>
-            </ui:ListView.ItemTemplate>
-        </ui:ListView>
     </Grid>
 
 </ui:Page>

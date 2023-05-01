@@ -1,6 +1,7 @@
 ﻿using iText.Kernel.Pdf;
 using iText.StyledXmlParser.Jsoup.Nodes;
 using Microsoft.Win32;
+using ModernWpf.Controls;
 using MVVMHelper;
 using Org.BouncyCastle.Bcpg.OpenPgp;
 using PdfExtraTool.Common;
@@ -70,7 +71,7 @@ namespace PdfExtraTool.ViewModel
             SelectedFile = openPdf.SelectedFile;
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
-            //GetPage();
+
             if (!string.IsNullOrEmpty(SelectedFile))
             {
                 RenderPdf render = new RenderPdf
@@ -133,6 +134,17 @@ namespace PdfExtraTool.ViewModel
             outputDoc.Close();
             inputDoc.Close();
 
+            var msg = string.Format(Resources.SaveSucess, s.FileName);
+
+            void Dlg_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+            {
+                System.Diagnostics.Process.Start(s.FileName);
+            }
+            void Later_Click(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+            {
+                
+            }
+            _ = MsgBox.ShowYesNo(msg, Resources.Saved, Resources.OpenNow, Resources.Later, Dlg_PrimaryButtonClick, Later_Click);
         }
 
     }

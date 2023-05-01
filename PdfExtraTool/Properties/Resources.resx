@@ -195,6 +195,9 @@
   <data name="OpenNow" xml:space="preserve">
     <value>Open now</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
   <data name="PageRotate" xml:space="preserve">
     <value>Page rotation</value>
   </data>
@@ -219,8 +222,20 @@
   <data name="RestartRequired" xml:space="preserve">
     <value>Restart Required</value>
   </data>
+  <data name="RotationDegree" xml:space="preserve">
+    <value>Rotation (degree)</value>
+  </data>
   <data name="SaveAs" xml:space="preserve">
     <value>Save as ...</value>
+  </data>
+  <data name="SaveChange" xml:space="preserve">
+    <value>Save change</value>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="SaveSucess" xml:space="preserve">
+    <value>Your file was saved successfully at: {0}</value>
   </data>
   <data name="Select" xml:space="preserve">
     <value>Select</value>
