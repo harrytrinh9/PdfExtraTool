@@ -35,28 +35,36 @@ namespace PdfExtraTool.CustomControls
         public RotationControlBox()
         {
             InitializeComponent();
-            DataContext = this;
+            //DataContext = this;
+            TxtDegree.Text = "0";
+            TxtDegree.TextChanged += TxtDegree_TextChanged;
+        }
+
+        private void TxtDegree_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int.TryParse(TxtDegree.Text, out int _val);
+            Value = _val;
         }
 
         private void BtnRotateLeft_Click(object sender, RoutedEventArgs e)
         {
-            //var deg = int.Parse(TxtDegree.Text);
-            //TxtDegree.Text = (deg += 90).ToString();
-            Value -= 90;
+            var deg = int.Parse(TxtDegree.Text);
+            TxtDegree.Text = (deg += 90).ToString();
+            //Value -= 90;
         }
 
         private void BtnRotateRight_Click(object sender, RoutedEventArgs e)
         {
-            //var deg = int.Parse(TxtDegree.Text);
-            //TxtDegree.Text = (deg -= 90).ToString();
-            if (Value < 270)
-            {
-                Value += 90;
-            }
-            else
-            {
-                Value = 0;
-            }
+            var deg = int.Parse(TxtDegree.Text);
+            TxtDegree.Text = (deg -= 90).ToString();
+            //if (Value < 270)
+            //{
+            //    Value += 90;
+            //}
+            //else
+            //{
+            //    Value = 0;
+            //}
         }
     }
 }

@@ -36,9 +36,9 @@
                 Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
             </Grid>
         </GroupBox>
-        <ui:ScrollViewerEx Grid.Row="1">
+
+        <ui:ScrollViewerEx Grid.Row="1" MaxWidth="550" HorizontalAlignment="Left" Margin="10 0">
             <ItemsControl ItemsSource="{Binding PreviewPage}"
-                     Margin="10 0"
                      Background="LightGray">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -66,15 +66,21 @@
                                           HorizontalAlignment="Left"
                                           Width="150"
                                           Header="{x:Static resx:Resources.RotationDegree}"
-                                          Maximum="270" Minimum="0" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline" />
-                                <!--<customControls:RotationControlBox Value="{Binding Orientation}" x:Name="rt"/>-->
+                                          Maximum="270" Minimum="-270" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline">
+                                </ui:NumberBox>
+                                <!--<customControls:RotationControlBox Value="{Binding Orientation}"/>-->
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ui:ScrollViewerEx>
-
+        <StackPanel Grid.Row="1"
+                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                    Visibility="{Binding IsLoading, Converter={StaticResource Bool2VisibilityConverter}}">
+            <ui:ProgressRing IsActive="{Binding IsLoading}" Height="45" Width="45"/>
+            <TextBlock Margin="0 10 0 0" Text="{x:Static resx:Resources.Loading}"/>
+        </StackPanel>
         <Button Grid.Row="2" Margin="10 0" Command="{Binding SaveFileCommand}" Content="{x:Static resx:Resources.SaveChange}"></Button>
     </Grid>
 </ui:Page>

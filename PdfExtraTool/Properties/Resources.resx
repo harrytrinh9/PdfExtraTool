@@ -168,6 +168,9 @@
   <data name="Light" xml:space="preserve">
     <value>Light</value>
   </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading ...</value>
+  </data>
   <data name="MarginBottom" xml:space="preserve">
     <value>Margin Bottom</value>
   </data>

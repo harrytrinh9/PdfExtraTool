@@ -27,7 +27,7 @@ namespace PdfExtraTool.ViewModel
         private string _protectPassword;
         private int _totalPage;
         private ICommand _saveFileCommand;
-        private List<PdfPageView> _previewPdf;
+        //private List<PdfPageView> _previewPdf;
         private ObservableCollection<PdfPageRotation> _previewPage = new ObservableCollection<PdfPageRotation>();
 
         public string SelectedFile { get => _selectedFile; set => SetProperty(ref _selectedFile, value); }
@@ -59,30 +59,32 @@ namespace PdfExtraTool.ViewModel
 
             set => _saveFileCommand = value;
         }
-        public List<PdfPageView> PreviewPdf { get => _previewPdf; set => Set(ref _previewPdf, value); }
+        //public List<PdfPageView> PreviewPdf { get => _previewPdf; set => Set(ref _previewPdf, value); }
         public ObservableCollection<PdfPageRotation> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
 
         private async void SelectFile()
         {
+            PreviewPage.Clear();
             var openPdf = new OpenPdf();
-            IsLoading = openPdf.IsLoading;
+            IsLoading = true;
             await openPdf.Open().ConfigureAwait(true);
-            IsLoading = openPdf.IsLoading;
             SelectedFile = openPdf.SelectedFile;
+            if (string.IsNullOrEmpty(SelectedFile))
+            {
+                return;
+            }
+
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
 
-            if (!string.IsNullOrEmpty(SelectedFile))
-            {
-                RenderPdf render = new RenderPdf
-                {
-                    FilePath = SelectedFile,
-                    Password = openPdfPassword
-                };
-                PreviewPdf = await render.Render().ConfigureAwait(false);
-            }
 
-            foreach (var item in PreviewPdf)
+            RenderPdf render = new RenderPdf
+            {
+                FilePath = SelectedFile,
+                Password = openPdfPassword
+            };
+            var previewPdf = await render.Render().ConfigureAwait(false);
+            foreach (var item in previewPdf)
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
@@ -97,6 +99,8 @@ namespace PdfExtraTool.ViewModel
                 });
 
             }
+            IsLoading = false;
+
         }
 
         private void SaveFile()
