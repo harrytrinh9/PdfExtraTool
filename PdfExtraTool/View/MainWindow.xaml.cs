@@ -151,5 +151,12 @@ namespace PdfExtraTool.View
         {
 
         }
+
+        private void NavView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var settings = (NavigationViewItem)NavView.SettingsItem;
+            settings.Content = Properties.Resources.Settings;
+            //settings.Icon = new SymbolIcon((Symbol)0xE897);
+        }
     }
 }

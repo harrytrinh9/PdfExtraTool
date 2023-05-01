@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllowAssembly" xml:space="preserve">
+    <value>Allow assembly</value>
+  </data>
+  <data name="AllowDegradedPrint" xml:space="preserve">
+    <value>Allow degraded print</value>
+  </data>
+  <data name="AllowFillIn" xml:space="preserve">
+    <value>Allow fill in</value>
+  </data>
+  <data name="AllowModifyAnnotations" xml:space="preserve">
+    <value>Allow modify annotations</value>
+  </data>
+  <data name="AllowModifyContents" xml:space="preserve">
+    <value>Allow modify contents</value>
+  </data>
+  <data name="AllowPrint" xml:space="preserve">
+    <value>Allow print</value>
+  </data>
+  <data name="AllowScreenReaders" xml:space="preserve">
+    <value>Allow screen readers</value>
+  </data>
+  <data name="AllowTextCopy" xml:space="preserve">
+    <value>Allow text copy</value>
+  </data>
   <data name="BottomCenter" xml:space="preserve">
     <value>Bottom center</value>
   </data>
@@ -137,6 +161,9 @@
   </data>
   <data name="Default" xml:space="preserve">
     <value>Default</value>
+  </data>
+  <data name="DontLeaveBlankPassword" xml:space="preserve">
+    <value>Don't leave a blank password</value>
   </data>
   <data name="ExtractPage" xml:space="preserve">
     <value>Extract page</value>
@@ -198,6 +225,9 @@
   <data name="OpenNow" xml:space="preserve">
     <value>Open now</value>
   </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
@@ -215,6 +245,12 @@
   </data>
   <data name="Position" xml:space="preserve">
     <value>Position</value>
+  </data>
+  <data name="ProtectedSuccess" xml:space="preserve">
+    <value>Your file was protected with password</value>
+  </data>
+  <data name="ProtectPassword" xml:space="preserve">
+    <value>Protect password</value>
   </data>
   <data name="Restart" xml:space="preserve">
     <value>Restart</value>
@@ -247,7 +283,7 @@
     <value>Select the PDF file</value>
   </data>
   <data name="SetPassword" xml:space="preserve">
-    <value>Protect by password</value>
+    <value>Protect</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>

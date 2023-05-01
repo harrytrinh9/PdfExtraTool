@@ -6,11 +6,15 @@
       xmlns:local="clr-namespace:PdfExtraTool.BaoMatPages"
       xmlns:ui="http://schemas.modernwpf.com/2019"
       xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:resx="clr-namespace:PdfExtraTool.Properties"
+      xmlns:converter="clr-namespace:PdfExtraTool.Converters"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance Type=vm:DatMatKhauViewModel}"
       Title="DatMatKhau">
-
+    <ui:Page.Resources>
+        <converter:FileNameConverter x:Key="FileNameCvt"/>
+    </ui:Page.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,24 +22,32 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Margin="5 0 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="173*"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="75"/>
-            </Grid.ColumnDefinitions>
-            <TextBox ui:ControlHelper.Header="Chọn file" Text="{Binding SelectedFile}" Margin="5 0 0 0"/>
-            <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
-            <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
-                    Command="{Binding SelectFileCommand}">Chọn</Button>
-        </Grid>
-        <PasswordBox x:Name="ProtectedPasswordBox" Grid.Row="1" ui:ControlHelper.Header="Đặt mật khẩu bảo vệ file" Margin="10"/>
-        <GroupBox Header="Tùy chọn" Grid.Row="2" Margin="10 0">
-            <StackPanel>
-                <CheckBox IsChecked="{Binding AllowPrint}">Cho phép in</CheckBox>
-                <CheckBox IsChecked="{Binding AllowCopy}">Cho phép copy văn bản</CheckBox>
-            </StackPanel>
+        <GroupBox Margin="10 0 0 0" Header="{x:Static resx:Resources.SelectPdfFile}" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="173*"/>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="75"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" FontWeight="Bold" Margin="10 0 0 0"/>
+                <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
+                <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
+                Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
+            </Grid>
         </GroupBox>
-        <Button Grid.Row="3" Margin="10 10 0 0" VerticalAlignment="Top" Command="{Binding SetPasswordPdfCommand}">Thực hiện</Button>
+        <PasswordBox x:Name="ProtectedPasswordBox" Grid.Row="1" ui:ControlHelper.Header="{x:Static resx:Resources.ProtectPassword}" Margin="10"/>
+        <GroupBox Header="{x:Static resx:Resources.Options}" Grid.Row="2" Margin="10 0">
+            <UniformGrid Columns="3" Rows="3">
+                <CheckBox IsChecked="{Binding AllowPrint}" Content="{x:Static resx:Resources.AllowPrint}"/>
+                <CheckBox IsChecked="{Binding AllowCopy}" Content="{x:Static resx:Resources.AllowTextCopy}"/>
+                <CheckBox IsChecked="{Binding AllowFillIn}" Content="{x:Static resx:Resources.AllowFillIn}"/>
+                <CheckBox IsChecked="{Binding AllowModifyAnnotations}" Content="{x:Static resx:Resources.AllowModifyAnnotations}"/>
+                <CheckBox IsChecked="{Binding AllowModifyContents}" Content="{x:Static resx:Resources.AllowModifyContents}"/>
+                <CheckBox IsChecked="{Binding AllowScreenReaders}" Content="{x:Static resx:Resources.AllowScreenReaders}"/>
+                <CheckBox IsChecked="{Binding AllowAssembly}" Content="{x:Static resx:Resources.AllowAssembly}"/>
+                <CheckBox IsChecked="{Binding AllowDegradedPrint}" Content="{x:Static resx:Resources.AllowDegradedPrint}"/>
+            </UniformGrid>
+        </GroupBox>
+        <Button Grid.Row="3" Margin="10 10 0 0" VerticalAlignment="Top" Command="{Binding SetPasswordPdfCommand}" Content="{x:Static resx:Resources.SaveChange}"></Button>
     </Grid>
 </ui:Page>

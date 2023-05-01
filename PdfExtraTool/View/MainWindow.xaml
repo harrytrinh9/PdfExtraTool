@@ -59,6 +59,7 @@
             IsPaneOpen="True"
             OpenPaneLength="200"
             IsBackEnabled="{Binding ElementName=ContentFrame, Path=CanGoBack}"
+            Loaded="NavView_Loaded"
             BackRequested="NavView_BackRequested"
             ItemInvoked="NavView_ItemInvoked"
             PaneOpening="NavView_PaneOpening"
@@ -71,7 +72,6 @@
 
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.NavigationViewGroup1}" />
-
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.Paging}" Tag="{x:Type ChungPages:DanhSoTrang}">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xeca5;" />

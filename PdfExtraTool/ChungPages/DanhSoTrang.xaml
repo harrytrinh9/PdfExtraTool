@@ -224,10 +224,10 @@
                         <StackPanel Margin="0 5" Background="LightGray">
                             <Image Source="{Binding Image}" Margin="0 0 0 5" MaxHeight="550"/>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <TextBlock Text="{x:Static resx:Resources.Page}"/>
-                                <TextBlock Text="{Binding Page}"/>
-                                <TextBlock Text=" / "/>
-                                <TextBlock Text="{Binding TotalPage}"/>
+                                <TextBlock Text="{x:Static resx:Resources.Page}" Foreground="Black"/>
+                                <TextBlock Text="{Binding Page}" Foreground="Black" Margin="5 0 0 0"/>
+                                <TextBlock Text=" / " Foreground="Black"/>
+                                <TextBlock Text="{Binding TotalPage}" Foreground="Black"/>
                             </StackPanel>
                         </StackPanel>
                     </DataTemplate>

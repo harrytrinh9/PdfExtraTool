@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllowAssembly" xml:space="preserve">
+    <value>Cho phép ghép nối</value>
+  </data>
+  <data name="AllowDegradedPrint" xml:space="preserve">
+    <value>Cho phép in ở chất lượng thấp</value>
+  </data>
+  <data name="AllowFillIn" xml:space="preserve">
+    <value>Cho phép điền biểu mẫu</value>
+  </data>
+  <data name="AllowModifyAnnotations" xml:space="preserve">
+    <value>Cho phép đánh dấu</value>
+  </data>
+  <data name="AllowModifyContents" xml:space="preserve">
+    <value>Cho phép sửa nội dung</value>
+  </data>
+  <data name="AllowPrint" xml:space="preserve">
+    <value>Cho phép in</value>
+  </data>
+  <data name="AllowScreenReaders" xml:space="preserve">
+    <value>Cho phép trình đọc màn hình</value>
+  </data>
+  <data name="AllowTextCopy" xml:space="preserve">
+    <value>Cho phép sao chép văn bản</value>
+  </data>
   <data name="BottomCenter" xml:space="preserve">
     <value>Dưới giữa</value>
   </data>
@@ -137,6 +161,9 @@
   </data>
   <data name="Default" xml:space="preserve">
     <value>Mặc định hệ thống</value>
+  </data>
+  <data name="DontLeaveBlankPassword" xml:space="preserve">
+    <value>Không được để trống mật khẩu</value>
   </data>
   <data name="ExtractPage" xml:space="preserve">
     <value>Trích xuất trang</value>
@@ -198,6 +225,9 @@
   <data name="OpenNow" xml:space="preserve">
     <value>Mở ngay</value>
   </data>
+  <data name="Options" xml:space="preserve">
+    <value>Tùy chọn</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
   </data>
@@ -218,6 +248,12 @@
   </data>
   <data name="Position" xml:space="preserve">
     <value>Vị trí</value>
+  </data>
+  <data name="ProtectedSuccess" xml:space="preserve">
+    <value>File của bạn đã được bảo vệ thành công bằng mật khẩu</value>
+  </data>
+  <data name="ProtectPassword" xml:space="preserve">
+    <value>Mật khẩu bảo vệ</value>
   </data>
   <data name="Restart" xml:space="preserve">
     <value>Khởi động lại</value>

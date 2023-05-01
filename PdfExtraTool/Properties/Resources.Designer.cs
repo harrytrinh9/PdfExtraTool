@@ -61,6 +61,78 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow assembly.
+        /// </summary>
+        public static string AllowAssembly {
+            get {
+                return ResourceManager.GetString("AllowAssembly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow degraded print.
+        /// </summary>
+        public static string AllowDegradedPrint {
+            get {
+                return ResourceManager.GetString("AllowDegradedPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow fill in.
+        /// </summary>
+        public static string AllowFillIn {
+            get {
+                return ResourceManager.GetString("AllowFillIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow modify annotations.
+        /// </summary>
+        public static string AllowModifyAnnotations {
+            get {
+                return ResourceManager.GetString("AllowModifyAnnotations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow modify contents.
+        /// </summary>
+        public static string AllowModifyContents {
+            get {
+                return ResourceManager.GetString("AllowModifyContents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow print.
+        /// </summary>
+        public static string AllowPrint {
+            get {
+                return ResourceManager.GetString("AllowPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow screen readers.
+        /// </summary>
+        public static string AllowScreenReaders {
+            get {
+                return ResourceManager.GetString("AllowScreenReaders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow text copy.
+        /// </summary>
+        public static string AllowTextCopy {
+            get {
+                return ResourceManager.GetString("AllowTextCopy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bottom center.
         /// </summary>
         public static string BottomCenter {
@@ -120,6 +192,15 @@ namespace PdfExtraTool.Properties {
         public static string Default {
             get {
                 return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t leave a blank password.
+        /// </summary>
+        public static string DontLeaveBlankPassword {
+            get {
+                return ResourceManager.GetString("DontLeaveBlankPassword", resourceCulture);
             }
         }
         
@@ -304,6 +385,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string Options {
+            get {
+                return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page.
         /// </summary>
         public static string Page {
@@ -354,6 +444,24 @@ namespace PdfExtraTool.Properties {
         public static string Position {
             get {
                 return ResourceManager.GetString("Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your file was protected with password.
+        /// </summary>
+        public static string ProtectedSuccess {
+            get {
+                return ResourceManager.GetString("ProtectedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Protect password.
+        /// </summary>
+        public static string ProtectPassword {
+            get {
+                return ResourceManager.GetString("ProtectPassword", resourceCulture);
             }
         }
         
@@ -448,7 +556,7 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Protect by password.
+        ///   Looks up a localized string similar to Protect.
         /// </summary>
         public static string SetPassword {
             get {
