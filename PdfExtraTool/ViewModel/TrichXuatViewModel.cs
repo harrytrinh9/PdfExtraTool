@@ -3,12 +3,15 @@ using Microsoft.Win32;
 using ModernWpf.Controls;
 using MVVMHelper;
 using PdfExtraTool.Common;
+using PdfRenderByHarryTrinhWpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace PdfExtraTool.ViewModel
 {
@@ -17,13 +20,15 @@ namespace PdfExtraTool.ViewModel
         private string _selectedFile;
         private ICommand _selectFileCommand;
         private bool _isLoading;
-        private string _openPassword;
+        private string openPdfPassword;
         private string _protectPassword;
         private int _totalPage;
         private int _extractFromPage = 1;
         private int _extractToPage = 1;
         private int _minimumSliderToPage = 1;
         private ICommand _extractPdfPageCommand;
+        private ObservableCollection<PdfPreview> _previewPage = new ObservableCollection<PdfPreview>();
+
 
         public string SelectedFile { get => _selectedFile; set => SetProperty(ref _selectedFile, value); }
         public bool IsLoading { get => _isLoading; set => SetProperty(ref _isLoading, value); }
@@ -68,15 +73,46 @@ namespace PdfExtraTool.ViewModel
             set => _extractPdfPageCommand = value;
         }
 
+        public ObservableCollection<PdfPreview> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
         private async void SelectFile()
         {
+            PreviewPage.Clear();
             var openPdf = new OpenPdf();
-            IsLoading = openPdf.IsLoading;
+            IsLoading = true;
             await openPdf.Open().ConfigureAwait(true);
-            IsLoading = openPdf.IsLoading;
             SelectedFile = openPdf.SelectedFile;
-            _openPassword = openPdf.OpenPdfPassword;
+            if (string.IsNullOrEmpty(SelectedFile))
+            {
+                return;
+            }
+
+            openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
+
+
+            RenderPdf render = new RenderPdf
+            {
+                FilePath = SelectedFile,
+                Password = openPdfPassword
+            };
+            var previewPdf = await render.Render().ConfigureAwait(false);
+            foreach (var item in previewPdf)
+            {
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    PreviewPage.Add(new PdfPreview
+                    {
+                        Image = item.Image,
+                        Page = item.Page,
+                        TotalPage = item.TotalPage,
+                        Orientation = 0,
+                        Selected = false
+
+                    });
+                });
+
+            }
+            IsLoading = false;
         }
 
         private async void ExtractPdfPage()
@@ -102,22 +138,30 @@ namespace PdfExtraTool.ViewModel
 
             //input doc
             PdfReader pdfReader;
-            if (string.IsNullOrEmpty(_openPassword))
+            if (string.IsNullOrEmpty(openPdfPassword))
             {
                 pdfReader = new PdfReader(SelectedFile);
             }
             else
             {
                 pdfReader = new PdfReader(SelectedFile,
-                new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(_openPassword)));
+                new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(openPdfPassword)));
                 pdfReader.SetUnethicalReading(true);
             }
             var pdfDoc = new PdfDocument(pdfReader);
             // output doc
             var pdfWriter = new PdfWriter(s.FileName);
             var pdfDocOutput = new PdfDocument(pdfWriter);
+            foreach (var item in PreviewPage)
+            {
+                if (item.Selected)
+                {
+                    var page = pdfDoc.GetPage(item.Page);
+                    page.SetRotation(item.Orientation);
+                    pdfDoc.CopyPagesTo(item.Page, item.Page, pdfDocOutput);
+                }
+            }
 
-            pdfDoc.CopyPagesTo(ExtractFromPage, ExtractToPage, pdfDocOutput);
 
             pdfDoc.Close();
             pdfDocOutput.Close();
@@ -129,4 +173,5 @@ namespace PdfExtraTool.ViewModel
                 .ConfigureAwait(true);
         }
     }
+
 }

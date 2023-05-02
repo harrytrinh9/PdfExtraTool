@@ -28,7 +28,7 @@ namespace PdfExtraTool.ViewModel
         private int _totalPage;
         private ICommand _saveFileCommand;
         //private List<PdfPageView> _previewPdf;
-        private ObservableCollection<PdfPageRotation> _previewPage = new ObservableCollection<PdfPageRotation>();
+        private ObservableCollection<PdfPreview> _previewPage = new ObservableCollection<PdfPreview>();
 
         public string SelectedFile { get => _selectedFile; set => SetProperty(ref _selectedFile, value); }
         public bool IsLoading { get => _isLoading; set => SetProperty(ref _isLoading, value); }
@@ -60,7 +60,7 @@ namespace PdfExtraTool.ViewModel
             set => _saveFileCommand = value;
         }
         //public List<PdfPageView> PreviewPdf { get => _previewPdf; set => Set(ref _previewPdf, value); }
-        public ObservableCollection<PdfPageRotation> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
+        public ObservableCollection<PdfPreview> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
 
         private async void SelectFile()
         {
@@ -88,7 +88,7 @@ namespace PdfExtraTool.ViewModel
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                    PreviewPage.Add(new PdfPageRotation
+                    PreviewPage.Add(new PdfPreview
                     {
                         Image = item.Image,
                         Page = item.Page,
@@ -153,16 +153,18 @@ namespace PdfExtraTool.ViewModel
 
     }
 
-    public class PdfPageRotation : ViewModelBase
+    public class PdfPreview : ViewModelBase
     {
         private int page;
         private int totalPage;
         private BitmapImage image;
         private int orientation;
+        private bool selected;
 
         public int Page { get => page; set => Set(ref page, value); }
         public int TotalPage { get => totalPage; set => Set(ref totalPage, value); }
         public BitmapImage Image { get => image; set => Set(ref image, value); }
         public int Orientation { get => orientation; set => Set(ref orientation, value); }
+        public bool Selected { get => selected; set => Set(ref selected, value); }
     }
 }

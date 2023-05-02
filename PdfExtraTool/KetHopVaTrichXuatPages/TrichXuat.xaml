@@ -18,10 +18,8 @@
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition/>
+            <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
         <GroupBox Margin="10 0 0 0" Header="{x:Static resx:Resources.SelectPdfFile}" Grid.ColumnSpan="3">
             <Grid>
@@ -36,32 +34,81 @@
                 Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
             </Grid>
         </GroupBox>
-        <Slider Grid.Row="1" Margin="10"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ui:ScrollViewerEx Grid.Row="1" MaxWidth="550" HorizontalAlignment="Left" Margin="10 0">
+                <ItemsControl ItemsSource="{Binding PreviewPage}"
+                     Background="LightGray">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5 10 10 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" MinWidth="150" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Image}" Height="250" Width="250">
+                                    <Image.RenderTransform>
+                                        <RotateTransform Angle="{Binding Orientation}"/>
+                                    </Image.RenderTransform>
+                                    <Image.RenderTransformOrigin>
+                                        <Point X="0.5" Y="0.5"/>
+                                    </Image.RenderTransformOrigin>
+                                </Image>
+                                <StackPanel Grid.Column="1" Margin="12 0 0 0">
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                        <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Page}"  FontWeight="Bold"/>
+                                        <TextBlock Text=" / "  FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding TotalPage}"  FontWeight="Bold"/>
+                                    </StackPanel>
+                                    <CheckBox IsChecked="{Binding Selected}" Margin="0 0 0 5" Content="{x:Static resx:Resources.Select}"></CheckBox>
+                                    <ui:NumberBox Value="{Binding Orientation}"
+                                          HorizontalAlignment="Left"
+                                          Width="150"
+                                          Header="{x:Static resx:Resources.RotationDegree}"
+                                          Maximum="270" Minimum="-270" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline">
+                                    </ui:NumberBox>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ui:ScrollViewerEx>
+
+            <!--<Slider Grid.Column="1" Margin="10"
                 TickPlacement="BottomRight"
                 Value="{Binding ExtractFromPage}"
                 IsSnapToTickEnabled="True"
                 AutoToolTipPlacement="TopLeft"
                 Minimum="1" Maximum="{Binding TotalPage}">
-            <ui:ControlHelper.Header>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Từ trang: " VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding ExtractFromPage}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ui:ControlHelper.Header>
-        </Slider>
-        <Slider Grid.Row="2" Margin="10"
+                <ui:ControlHelper.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Từ trang: " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding ExtractFromPage}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ui:ControlHelper.Header>
+            </Slider>
+            <Slider Grid.Row="2" Margin="10"
                 TickPlacement="BottomRight"
                 Value="{Binding ExtractToPage}"
                 IsSnapToTickEnabled="True"
                 AutoToolTipPlacement="TopLeft"
                 Minimum="{Binding MinimumSliderToPage}" Maximum="{Binding TotalPage}">
-            <ui:ControlHelper.Header>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Đến trang: " VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding ExtractToPage}" VerticalAlignment="Center"/>
-                </StackPanel>
-            </ui:ControlHelper.Header>
-        </Slider>
-        <Button Grid.Row="3" Margin="10 10 0 0" Command="{Binding ExtractPdfPageCommand}">Trích xuất</Button>
+                <ui:ControlHelper.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Đến trang: " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding ExtractToPage}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ui:ControlHelper.Header>
+            </Slider>-->
+        </Grid>
+
+        <Button Grid.Row="3" Margin="10 10 0 0" Command="{Binding ExtractPdfPageCommand}"
+                Style="{StaticResource AccentButtonStyle}"
+                Content="{x:Static resx:Resources.ExtractPage}"></Button>
     </Grid>
 </ui:Page>

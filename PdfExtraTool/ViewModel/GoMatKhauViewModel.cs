@@ -89,5 +89,6 @@ namespace PdfExtraTool.ViewModel
             }
             await MsgBox.Show(Resources.UnProtectSuccess, "PDF Extra tool", Resources.OpenNow, open_click).ConfigureAwait(true);
         }
+
     }
 }
