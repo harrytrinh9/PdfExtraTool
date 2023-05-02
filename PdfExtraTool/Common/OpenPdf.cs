@@ -3,6 +3,7 @@ using iText.Kernel.Pdf;
 using Microsoft.Win32;
 using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
+using PdfExtraTool.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace PdfExtraTool.Common
 
             var o = new OpenFileDialog
             {
-                Title = "Hãy chọn file",
+                Title = Resources.SelectPdfFile,
                 Filter = "PDF file|*.pdf"
             };
 
@@ -50,7 +51,7 @@ namespace PdfExtraTool.Common
                 {
                     if (ex.Message.Contains("password"))
                     {
-                        OpenPdfPassword = await MsgBox.ShowInputPassword("File này yêu cầu mật khẩu để mở").ConfigureAwait(true);
+                        OpenPdfPassword = await MsgBox.ShowInputPassword(Resources.PasswordRequirement).ConfigureAwait(true);
                         if (OpenPdfPassword.Length == 0)
                         {
                             SelectedFile = null;
@@ -74,7 +75,7 @@ namespace PdfExtraTool.Common
                         }
                         catch
                         {
-                            await MsgBox.Show("Sai mật khẩu", "Không thể mở file").ConfigureAwait(true);
+                            await MsgBox.Show(Resources.WrongPassword, Resources.UnableToOpenFile).ConfigureAwait(true);
                             SelectedFile = null;
                         }
 
@@ -105,7 +106,7 @@ namespace PdfExtraTool.Common
             {
                 if (ex.Message.Contains("password"))
                 {
-                    OpenPdfPassword = await MsgBox.ShowInputPassword("File này yêu cầu mật khẩu để mở").ConfigureAwait(true);
+                    OpenPdfPassword = await MsgBox.ShowInputPassword(Resources.PasswordRequirement).ConfigureAwait(true);
                     if (OpenPdfPassword.Length == 0)
                     {
                         SelectedFile = null;
@@ -129,7 +130,7 @@ namespace PdfExtraTool.Common
                     }
                     catch
                     {
-                        await MsgBox.Show("Sai mật khẩu", "Không thể mở file").ConfigureAwait(true);
+                        await MsgBox.Show(Resources.WrongPassword, Resources.UnableToOpenFile).ConfigureAwait(true);
                         SelectedFile = null;
                     }
 

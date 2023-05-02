@@ -31,7 +31,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="173*"/>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="60" />
                         <ColumnDefinition Width="75"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" Margin="10 0 0 0"/>

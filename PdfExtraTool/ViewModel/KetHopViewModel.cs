@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using ModernWpf.Controls;
 using MVVMHelper;
 using PdfExtraTool.Common;
+using PdfExtraTool.Properties;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -171,7 +172,8 @@ namespace PdfExtraTool.ViewModel
             {
                 System.Diagnostics.Process.Start(s.FileName);
             }
-            await MsgBox.Show($"Đã kết hợp {ListInputPdf.Count} file.\nTổng số trang {ListInputPdf.Sum(x => x.PageCount)}", "PDF Extra tool", "Mở xem", Dlg_PrimaryButtonClick)
+            string msg = string.Format(Resources.MergedSuccess, ListInputPdf.Count, ListInputPdf.Sum(x => x.PageCount));
+            await MsgBox.Show(msg, "PDF Extra tool", Resources.OpenNow, Dlg_PrimaryButtonClick)
                 .ConfigureAwait(true);
         }
     }

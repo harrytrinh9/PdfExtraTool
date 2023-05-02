@@ -61,6 +61,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add file.
+        /// </summary>
+        public static string AddFile {
+            get {
+                return ResourceManager.GetString("AddFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow assembly.
         /// </summary>
         public static string AllowAssembly {
@@ -214,6 +223,24 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The selected file have no password.
+        /// </summary>
+        public static string FileHaveNoPassword {
+            get {
+                return ResourceManager.GetString("FileHaveNoPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name.
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Font.
         /// </summary>
         public static string Font {
@@ -340,11 +367,29 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Merge file.
+        ///   Looks up a localized string similar to Merged {0} files, total page of new file: {1} pages.
+        /// </summary>
+        public static string MergedSuccess {
+            get {
+                return ResourceManager.GetString("MergedSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Merge files.
         /// </summary>
         public static string MergeFiles {
             get {
                 return ResourceManager.GetString("MergeFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifed date.
+        /// </summary>
+        public static string ModifedDate {
+            get {
+                return ResourceManager.GetString("ModifedDate", resourceCulture);
             }
         }
         
@@ -403,6 +448,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page count.
+        /// </summary>
+        public static string PageCount {
+            get {
+                return ResourceManager.GetString("PageCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page rotation.
         /// </summary>
         public static string PageRotate {
@@ -426,6 +480,15 @@ namespace PdfExtraTool.Properties {
         public static string PagingComplete {
             get {
                 return ResourceManager.GetString("PagingComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password needed to open this file.
+        /// </summary>
+        public static string PasswordRequirement {
+            get {
+                return ResourceManager.GetString("PasswordRequirement", resourceCulture);
             }
         }
         
@@ -574,6 +637,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size.
+        /// </summary>
+        public static string Size {
+            get {
+                return ResourceManager.GetString("Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stamping.
         /// </summary>
         public static string Stamp {
@@ -637,6 +709,33 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to open file.
+        /// </summary>
+        public static string UnableToOpenFile {
+            get {
+                return ResourceManager.GetString("UnableToOpenFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unprotect file.
+        /// </summary>
+        public static string UnprotectFile {
+            get {
+                return ResourceManager.GetString("UnprotectFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unprotect file successfully.
+        /// </summary>
+        public static string UnProtectSuccess {
+            get {
+                return ResourceManager.GetString("UnProtectSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unprotect.
         /// </summary>
         public static string UnsetPassword {
@@ -651,6 +750,15 @@ namespace PdfExtraTool.Properties {
         public static string Working {
             get {
                 return ResourceManager.GetString("Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong password.
+        /// </summary>
+        public static string WrongPassword {
+            get {
+                return ResourceManager.GetString("WrongPassword", resourceCulture);
             }
         }
     }

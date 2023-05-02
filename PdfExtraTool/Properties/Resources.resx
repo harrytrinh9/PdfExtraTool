@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddFile" xml:space="preserve">
+    <value>Add file</value>
+  </data>
   <data name="AllowAssembly" xml:space="preserve">
     <value>Allow assembly</value>
   </data>
@@ -168,6 +171,12 @@
   <data name="ExtractPage" xml:space="preserve">
     <value>Extract page</value>
   </data>
+  <data name="FileHaveNoPassword" xml:space="preserve">
+    <value>The selected file have no password</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File name</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>Font</value>
   </data>
@@ -210,8 +219,14 @@
   <data name="MarginTop" xml:space="preserve">
     <value>Margin Top</value>
   </data>
+  <data name="MergedSuccess" xml:space="preserve">
+    <value>Merged {0} files, total page of new file: {1} pages</value>
+  </data>
   <data name="MergeFiles" xml:space="preserve">
-    <value>Merge file</value>
+    <value>Merge files</value>
+  </data>
+  <data name="ModifedDate" xml:space="preserve">
+    <value>Modifed date</value>
   </data>
   <data name="NavigationViewGroup1" xml:space="preserve">
     <value>General</value>
@@ -231,6 +246,9 @@
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>Page count</value>
+  </data>
   <data name="PageRotate" xml:space="preserve">
     <value>Page rotation</value>
   </data>
@@ -239,6 +257,9 @@
   </data>
   <data name="PagingComplete" xml:space="preserve">
     <value>Your file was added page number. (if your file have password, it automatically remove)</value>
+  </data>
+  <data name="PasswordRequirement" xml:space="preserve">
+    <value>Password needed to open this file</value>
   </data>
   <data name="Pharse" xml:space="preserve">
     <value>Pharse</value>
@@ -288,6 +309,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
   <data name="Stamp" xml:space="preserve">
     <value>Stamping</value>
   </data>
@@ -309,10 +333,22 @@
   <data name="TotalPage" xml:space="preserve">
     <value>Total page: {0}</value>
   </data>
+  <data name="UnableToOpenFile" xml:space="preserve">
+    <value>Unable to open file</value>
+  </data>
+  <data name="UnprotectFile" xml:space="preserve">
+    <value>Unprotect file</value>
+  </data>
+  <data name="UnProtectSuccess" xml:space="preserve">
+    <value>Unprotect file successfully</value>
+  </data>
   <data name="UnsetPassword" xml:space="preserve">
     <value>Unprotect</value>
   </data>
   <data name="Working" xml:space="preserve">
     <value>Working ...</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong password</value>
   </data>
 </root>

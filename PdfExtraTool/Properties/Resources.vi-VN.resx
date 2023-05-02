@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddFile" xml:space="preserve">
+    <value>Thêm</value>
+  </data>
   <data name="AllowAssembly" xml:space="preserve">
     <value>Cho phép ghép nối</value>
   </data>
@@ -168,6 +171,12 @@
   <data name="ExtractPage" xml:space="preserve">
     <value>Trích xuất trang</value>
   </data>
+  <data name="FileHaveNoPassword" xml:space="preserve">
+    <value>Tập tin đã chọn không có mật khẩu</value>
+  </data>
+  <data name="FileName" xml:space="preserve">
+    <value>Tên</value>
+  </data>
   <data name="Font" xml:space="preserve">
     <value>Phông chữ</value>
   </data>
@@ -210,8 +219,14 @@
   <data name="MarginTop" xml:space="preserve">
     <value>Lề trên</value>
   </data>
+  <data name="MergedSuccess" xml:space="preserve">
+    <value>Đã kết hợp {0} tập tin, tổng số trang sau khi kết hợp: {1} trang</value>
+  </data>
   <data name="MergeFiles" xml:space="preserve">
     <value>Hợp nhất</value>
+  </data>
+  <data name="ModifedDate" xml:space="preserve">
+    <value>Ngày sửa</value>
   </data>
   <data name="NavigationViewGroup1" xml:space="preserve">
     <value>Chung</value>
@@ -231,6 +246,9 @@
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
   </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>Số trang</value>
+  </data>
   <data name="PageNoPosition" xml:space="preserve">
     <value>Vị trí đánh số</value>
   </data>
@@ -242,6 +260,9 @@
   </data>
   <data name="PagingComplete" xml:space="preserve">
     <value>File của bạn đã được đánh số trang thành công. (nếu file có mật khẩu, phần mềm sẽ tự bỏ mật khẩu sau khi đánh số trang)</value>
+  </data>
+  <data name="PasswordRequirement" xml:space="preserve">
+    <value>Cần mật khẩu để mở tập tin</value>
   </data>
   <data name="Pharse" xml:space="preserve">
     <value>Cụm từ</value>
@@ -291,6 +312,9 @@
   <data name="Settings" xml:space="preserve">
     <value>Cài đặt</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Cỡ</value>
+  </data>
   <data name="Stamp" xml:space="preserve">
     <value>Đóng dấu</value>
   </data>
@@ -312,10 +336,22 @@
   <data name="TotalPage" xml:space="preserve">
     <value>Tổng số trang: {0}</value>
   </data>
+  <data name="UnableToOpenFile" xml:space="preserve">
+    <value>Không thể mở tập tin</value>
+  </data>
+  <data name="UnprotectFile" xml:space="preserve">
+    <value>Gỡ mật khẩu</value>
+  </data>
+  <data name="UnProtectSuccess" xml:space="preserve">
+    <value>Đã gỡ mật khẩu thành công</value>
+  </data>
   <data name="UnsetPassword" xml:space="preserve">
     <value>Gỡ mật khẩu</value>
   </data>
   <data name="Working" xml:space="preserve">
     <value>Đang thực hiện ...</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Sai mật khẩu</value>
   </data>
 </root>

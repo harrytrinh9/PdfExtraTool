@@ -1,7 +1,9 @@
 ﻿using iText.Kernel.Pdf;
 using Microsoft.Win32;
+using ModernWpf.Controls;
 using MVVMHelper;
 using PdfExtraTool.Common;
+using PdfExtraTool.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,37 +52,42 @@ namespace PdfExtraTool.ViewModel
         private async void SelectFile()
         {
             var openPdf = new OpenPdf();
-            IsLoading = openPdf.IsLoading;
+            IsLoading = true;
             await openPdf.Open().ConfigureAwait(true);
             IsLoading = openPdf.IsLoading;
             SelectedFile = openPdf.SelectedFile;
             _openPassword = openPdf.OpenPdfPassword;
+            IsLoading = false;
         }
 
         private async void RemovePassword()
         {
             if (string.IsNullOrEmpty(_openPassword))
             {
-                await MsgBox.Show("File bạn đã chọn không có mật khẩu.", "PDF Extra tool").ConfigureAwait(true);
+                await MsgBox.Show(Resources.FileHaveNoPassword, "PDF Extra tool").ConfigureAwait(true);
                 return;
             }
-            var sf = new SaveFileDialog
+            var s = new SaveFileDialog
             {
                 Filter = "PDF|*.pdf",
                 FileName = $"{System.IO.Path.GetFileNameWithoutExtension(SelectedFile)}_no_Password.pdf"
             };
-            sf.FileName = sf.FileName.Replace("[PW]_", "");
-            if (sf.ShowDialog() == false)
+            s.FileName = s.FileName.Replace("[PW]_", "");
+            if (s.ShowDialog() == false)
             {
                 return;
             }
-            var pdfWriter = new PdfWriter(sf.FileName);
+            var pdfWriter = new PdfWriter(s.FileName);
             var pdfReader = new PdfReader(SelectedFile,
             new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(_openPassword)));
             pdfReader.SetUnethicalReading(true);
             var pdfDoc = new PdfDocument(pdfReader, pdfWriter);
             pdfDoc.Close();
-            await MsgBox.Show("Đã gỡ mật khẩu thành công.", "PDF Extra tool").ConfigureAwait(true);
+            void open_click(Object sender, ContentDialogButtonClickEventArgs args)
+            {
+                System.Diagnostics.Process.Start(s.FileName);
+            }
+            await MsgBox.Show(Resources.UnProtectSuccess, "PDF Extra tool", Resources.OpenNow, open_click).ConfigureAwait(true);
         }
     }
 }
