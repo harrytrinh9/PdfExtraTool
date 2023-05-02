@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>pdf_calc.ico</ApplicationIcon>
+    <ApplicationIcon>PdfExtraTool.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -318,9 +318,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Resource Include="pdf_calc.ico" />
+    <Resource Include="PdfExtraTool.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PdfRenderByHarryTrinh\PdfRenderByHarryTrinhWpf.csproj">
