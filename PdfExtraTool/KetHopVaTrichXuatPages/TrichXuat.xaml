@@ -42,7 +42,7 @@
 
             <ui:ScrollViewerEx Grid.Row="1" MaxWidth="550" HorizontalAlignment="Left" Margin="10 0">
                 <ItemsControl ItemsSource="{Binding PreviewPage}"
-                     Background="LightGray">
+                     Background="Gray">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="5 10 10 10">

@@ -117,15 +117,8 @@ namespace PdfExtraTool.ViewModel
 
         private async void ExtractPdfPage()
         {
-            string saveFileName = $"{System.IO.Path.GetFileNameWithoutExtension(SelectedFile)}";
-            if (ExtractFromPage != ExtractToPage)
-            {
-                saveFileName += $"_page_{ExtractFromPage}-{ExtractToPage}.pdf";
-            }
-            else if (ExtractFromPage == ExtractToPage)
-            {
-                saveFileName += $"_page_{ExtractFromPage}.pdf";
-            }
+            string saveFileName = $"[Extracted from]{System.IO.Path.GetFileNameWithoutExtension(SelectedFile)}";
+
             var s = new SaveFileDialog()
             {
                 Filter = "Pdf file|*.pdf",
