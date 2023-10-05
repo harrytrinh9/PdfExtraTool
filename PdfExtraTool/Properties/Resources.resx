@@ -159,6 +159,9 @@
   <data name="ChangeLanguageNotify" xml:space="preserve">
     <value>The UI language will change at next application start</value>
   </data>
+  <data name="ChangePDFFile" xml:space="preserve">
+    <value>Change PDF file</value>
+  </data>
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>

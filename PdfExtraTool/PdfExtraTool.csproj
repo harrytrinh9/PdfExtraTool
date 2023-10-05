@@ -206,6 +206,7 @@
     <Compile Include="Converters\FileNameConverter.cs" />
     <Compile Include="Converters\KBConverter.cs" />
     <Compile Include="Converters\List2TotalPageConverter.cs" />
+    <Compile Include="Converters\PreviewBackgroundConverter.cs" />
     <Compile Include="Converters\RevertBoolean.cs" />
     <Compile Include="CustomControls\PdfViewer.xaml.cs">
       <DependentUpon>PdfViewer.xaml</DependentUpon>

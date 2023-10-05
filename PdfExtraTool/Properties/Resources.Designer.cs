@@ -187,6 +187,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change PDF file.
+        /// </summary>
+        public static string ChangePDFFile {
+            get {
+                return ResourceManager.GetString("ChangePDFFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {

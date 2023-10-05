@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1259
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfExtraTool", "PdfExtraTool\PdfExtraTool.csproj", "{30476E1B-05A8-4112-B855-0B75FF19D4D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfRenderByHarryTrinhWpf", "PdfRenderByHarryTrinh\PdfRenderByHarryTrinhWpf.csproj", "{B0E73E98-C2B7-41A8-8EE2-1C7ACCF1C228}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{5BAC6FB2-3BF2-479A-B4A8-DEAB5C7180BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

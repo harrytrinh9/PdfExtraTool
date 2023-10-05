@@ -10,6 +10,7 @@ using PdfRenderByHarryTrinhWpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,11 @@ namespace PdfExtraTool.ViewModel
     public class LatTrangViewModel: ViewModelBase
     {
         private string _selectedFile;
+        private string _lbSelectFile = Properties.Resources.SelectPdfFile;
         private ICommand _selectFileCommand;
         private bool _isLoading;
+        private bool _isPdfLoaded;
+        private bool _isSelectButtonEnabled = true;
         private string openPdfPassword;
         private string _protectPassword;
         private int _totalPage;
@@ -40,7 +44,7 @@ namespace PdfExtraTool.ViewModel
             {
                 if (_selectFileCommand == null)
                 {
-                    _selectFileCommand = new RelayCommand(_ => SelectFile(), _ => !IsLoading);
+                    _selectFileCommand = new RelayCommand(async _ => await SelectFile(), _ => !IsLoading);
                 }
                 return _selectFileCommand;
             }
@@ -88,6 +92,10 @@ namespace PdfExtraTool.ViewModel
             }
             set => _rotateLeftCommand = value; }
 
+        public string LbSelectFile { get => _lbSelectFile; set => SetProperty(ref _lbSelectFile, value); }
+        public bool IsSelectButtonEnabled { get => _isSelectButtonEnabled; set => SetProperty(ref _isSelectButtonEnabled, value); }
+        public bool IsPdfLoaded { get => _isPdfLoaded; set => SetProperty(ref _isPdfLoaded, value); }
+
         private void RotateRight(object o)
         {
             PdfPreview page = (PdfPreview)o;
@@ -100,11 +108,13 @@ namespace PdfExtraTool.ViewModel
             page.Orientation -= 90;
         }
 
-        private async void SelectFile()
+        private async Task SelectFile()
         {
+            IsPdfLoaded = false;
             PreviewPage.Clear();
             var openPdf = new OpenPdf();
             IsLoading = true;
+            IsSelectButtonEnabled = false;
             await openPdf.Open().ConfigureAwait(true);
             SelectedFile = openPdf.SelectedFile;
             if (string.IsNullOrEmpty(SelectedFile))
@@ -115,7 +125,7 @@ namespace PdfExtraTool.ViewModel
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
 
-
+            LbSelectFile = Resources.ChangePDFFile;
             RenderPdf render = new RenderPdf
             {
                 FilePath = SelectedFile,
@@ -138,7 +148,9 @@ namespace PdfExtraTool.ViewModel
 
             }
             IsLoading = false;
-
+            IsSelectButtonEnabled = true;
+            IsPdfLoaded = true;
+            Debug.WriteLine("Isloading {0}", IsLoading);
         }
 
         private void SaveFile()
