@@ -574,6 +574,24 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rotate left.
+        /// </summary>
+        public static string RotateLeft {
+            get {
+                return ResourceManager.GetString("RotateLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rotate right.
+        /// </summary>
+        public static string RotateRight {
+            get {
+                return ResourceManager.GetString("RotateRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rotation (degree).
         /// </summary>
         public static string RotationDegree {

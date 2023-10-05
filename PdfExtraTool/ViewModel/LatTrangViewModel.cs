@@ -29,6 +29,8 @@ namespace PdfExtraTool.ViewModel
         private ICommand _saveFileCommand;
         //private List<PdfPageView> _previewPdf;
         private ObservableCollection<PdfPreview> _previewPage = new ObservableCollection<PdfPreview>();
+        private ICommand _rotateRightCommand;
+        private ICommand _rotateLeftCommand;
 
         public string SelectedFile { get => _selectedFile; set => SetProperty(ref _selectedFile, value); }
         public bool IsLoading { get => _isLoading; set => SetProperty(ref _isLoading, value); }
@@ -61,6 +63,42 @@ namespace PdfExtraTool.ViewModel
         }
         //public List<PdfPageView> PreviewPdf { get => _previewPdf; set => Set(ref _previewPdf, value); }
         public ObservableCollection<PdfPreview> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
+        public ICommand RotateRightCommand
+        {
+            get
+            { 
+                if (_rotateRightCommand == null)
+                {
+                    _rotateRightCommand = new RelayCommand(p => RotateRight(p));
+                }
+                return _rotateRightCommand;
+            }
+            set => _rotateRightCommand = value; 
+        }
+
+        public ICommand RotateLeftCommand
+        {
+            get 
+            {
+                if (_rotateLeftCommand == null)
+                {
+                    _rotateLeftCommand = new RelayCommand(p => RotateLeft(p));
+                }
+                return _rotateLeftCommand;
+            }
+            set => _rotateLeftCommand = value; }
+
+        private void RotateRight(object o)
+        {
+            PdfPreview page = (PdfPreview)o;
+            page.Orientation += 90;
+        }
+
+        private void RotateLeft(object o)
+        {
+            PdfPreview page = (PdfPreview)o;
+            page.Orientation -= 90;
+        }
 
         private async void SelectFile()
         {

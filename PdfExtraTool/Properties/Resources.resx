@@ -288,6 +288,12 @@
   <data name="RestartRequired" xml:space="preserve">
     <value>Restart Required</value>
   </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Rotate left</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Rotate right</value>
+  </data>
   <data name="RotationDegree" xml:space="preserve">
     <value>Rotation (degree)</value>
   </data>

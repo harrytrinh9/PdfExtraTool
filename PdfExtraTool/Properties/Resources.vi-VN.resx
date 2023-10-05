@@ -291,6 +291,12 @@
   <data name="RestartRequired" xml:space="preserve">
     <value>Khởi động lại ứng dụng</value>
   </data>
+  <data name="RotateLeft" xml:space="preserve">
+    <value>Lật sang trái</value>
+  </data>
+  <data name="RotateRight" xml:space="preserve">
+    <value>Lật sang phải</value>
+  </data>
   <data name="RotationDegree" xml:space="preserve">
     <value>Lật trang (độ)</value>
   </data>

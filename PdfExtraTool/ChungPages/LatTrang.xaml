@@ -13,6 +13,7 @@
       d:Background="White"
       VerticalAlignment="Top"
       mc:Ignorable="d"
+      x:Name="RootPage"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LatTrang">
     <ui:Page.Resources>
@@ -48,15 +49,28 @@
                                 <ColumnDefinition Width="Auto" MinWidth="150" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Image}" Height="{Binding ElementName=SliderZoomView, Path=Value}"
+                            <StackPanel>
+                                <Image Source="{Binding Image}" Height="{Binding ElementName=SliderZoomView, Path=Value}"
                                    Width="{Binding ElementName=SliderZoomView, Path=Value}">
-                                <Image.RenderTransform>
-                                    <RotateTransform Angle="{Binding Orientation}"/>
-                                </Image.RenderTransform>
-                                <Image.RenderTransformOrigin>
-                                    <Point X="0.5" Y="0.5"/>
-                                </Image.RenderTransformOrigin>
-                            </Image>
+                                    <Image.RenderTransform>
+                                        <RotateTransform Angle="{Binding Orientation}"/>
+                                    </Image.RenderTransform>
+                                    <Image.RenderTransformOrigin>
+                                        <Point X="0.5" Y="0.5"/>
+                                    </Image.RenderTransformOrigin>
+                                </Image>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button ToolTip="{x:Static resx:Resources.RotateLeft}"
+                                        Command="{Binding DataContext.RotateLeftCommand, RelativeSource={RelativeSource AncestorType=ui:Page}}" CommandParameter="{Binding}">
+                                        <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                                    </Button>
+                                    <Button Margin="5 0 0 0" ToolTip="{x:Static resx:Resources.RotateRight}"
+                                            Command="{Binding DataContext.RotateRightCommand, RelativeSource={RelativeSource AncestorType=ui:Page}}" CommandParameter="{Binding}">
+                                        <ui:FontIcon Glyph="&#xe72c;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+
                             <StackPanel Grid.Column="1" Margin="12 0 0 0">
                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                     <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
@@ -71,14 +85,7 @@
                                           Maximum="270" Minimum="-270" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline">
                                 </ui:NumberBox>-->
                                 
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Grid.Column="1" x:Name="BtnRotateLeft" Margin="5 0 0 0">
-                                        <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}"/>
-                                    </Button>
-                                    <Button Grid.Column="2" x:Name="BtnRotateRight" Margin="5 0 0 0">
-                                        <ui:FontIcon Glyph="&#xe72c;" FontFamily="{StaticResource SegoeFluentIcons}"/>
-                                    </Button>
-                                </StackPanel>
+
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
