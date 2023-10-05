@@ -30,7 +30,7 @@
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
             <TextBlock Text="{Binding}" Margin="12,32,0,0" />
         </DataTemplate>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -71,7 +71,11 @@
             <!--<ui:NavigationView.AutoSuggestBox>
                 <ui:AutoSuggestBox PlaceholderText="Hint text" QueryIcon="Find" />
             </ui:NavigationView.AutoSuggestBox>-->
-
+            <ui:NavigationView.PaneToggleButtonStyle>
+                <Style BasedOn="{StaticResource PaneToggleButtonStyle}" TargetType="Button">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </ui:NavigationView.PaneToggleButtonStyle>
             <ui:NavigationView.MenuItems>
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.NavigationViewGroup1}" />
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.Paging}" Tag="{x:Type ChungPages:DanhSoTrang}">
@@ -80,11 +84,12 @@
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
-                <ui:NavigationViewItem Content="{x:Static properties:Resources.Stamp}" Tag="{x:Type ChungPages:DongDau}">
+                <!--<ui:NavigationViewItem Content="{x:Static properties:Resources.Stamp}" Tag="{x:Type ChungPages:DongDau}">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xe70a;" FontFamily="{StaticResource SegoeFluentIcons}" />
                     </ui:NavigationViewItem.Icon>
-                </ui:NavigationViewItem>
+                </ui:NavigationViewItem>-->
+                
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.PageRotate}" Tag="{x:Type ChungPages:LatTrang}">
                     <ui:NavigationViewItem.Icon>
                         <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}" />

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MVVMHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,9 @@ namespace PdfExtraTool.View
         public AboutPage()
         {
             InitializeComponent();
+            Assembly assembly = Assembly.GetEntryAssembly();
+            Version version = assembly.GetName().Version;
+            lbAppVersion.Text = string.Format("{0}.{1}", version.Major, version.Minor);
         }
     }
 }

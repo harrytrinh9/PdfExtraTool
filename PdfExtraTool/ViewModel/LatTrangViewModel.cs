@@ -119,6 +119,8 @@ namespace PdfExtraTool.ViewModel
             SelectedFile = openPdf.SelectedFile;
             if (string.IsNullOrEmpty(SelectedFile))
             {
+                IsLoading = false;
+                IsSelectButtonEnabled= true;
                 return;
             }
 

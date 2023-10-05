@@ -147,6 +147,12 @@
   <data name="AllowTextCopy" xml:space="preserve">
     <value>Cho phép sao chép văn bản</value>
   </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Tên ứng dụng:</value>
+  </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>Phiên bản:</value>
+  </data>
   <data name="BottomCenter" xml:space="preserve">
     <value>Dưới giữa</value>
   </data>
@@ -164,6 +170,12 @@
   </data>
   <data name="Close" xml:space="preserve">
     <value>Đóng</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="CopyRight" xml:space="preserve">
+    <value>© 2023 Harry Trinh. Tất cả các quyền được bảo lưu.</value>
   </data>
   <data name="Dark" xml:space="preserve">
     <value>Tối</value>
@@ -335,6 +347,9 @@
   </data>
   <data name="Start" xml:space="preserve">
     <value>Bắt đầu</value>
+  </data>
+  <data name="ThanksLeter" xml:space="preserve">
+    <value>Chúng tôi xin cảm ơn các nhà phát triển và cộng đồng mã nguồn mở đã hỗ trợ trong quá trình phát triển ứng dụng này.</value>
   </data>
   <data name="Theme" xml:space="preserve">
     <value>Chủ đề</value>

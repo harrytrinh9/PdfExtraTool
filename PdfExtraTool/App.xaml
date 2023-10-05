@@ -30,6 +30,9 @@
             <FontFamily x:Key="Icons54">
                 pack://application:,,,/PdfExtraTool;component/Assets/Fonts/#icon54com
             </FontFamily>
+            <FontFamily x:Key="Icomoon">
+                pack://application:,,,/PdfExtraTool;component/Assets/Fonts/#icomoon
+            </FontFamily>
         </ResourceDictionary>
         
     </Application.Resources>

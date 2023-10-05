@@ -9,6 +9,7 @@
       xmlns:resx="clr-namespace:PdfExtraTool.Properties"
       xmlns:converter="clr-namespace:PdfExtraTool.Converters"
       d:DataContext="{d:DesignInstance Type=vm:TrichXuatViewModel}"
+      d:Background="White"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TrichXuat">
@@ -21,94 +22,87 @@
             <RowDefinition/>
             <RowDefinition Height="45"/>
         </Grid.RowDefinitions>
-        <GroupBox Margin="10 0 0 0" Header="{x:Static resx:Resources.SelectPdfFile}" Grid.ColumnSpan="3">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="173*"/>
-                    <ColumnDefinition Width="50" />
-                    <ColumnDefinition Width="75"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" FontWeight="Bold" Margin="10 0 0 0"/>
-                <ui:ProgressRing Grid.Column="1" Width="20" IsActive="{Binding IsLoading}" Margin="3 0 0 6" VerticalAlignment="Bottom"/>
-                <Button Grid.Column="2" VerticalAlignment="Bottom" Margin="5 0"
-                Command="{Binding SelectFileCommand}" Content="{x:Static resx:Resources.Select}"></Button>
-            </Grid>
-        </GroupBox>
-        <Grid Grid.Row="1">
+        <Grid Margin="10 0 10 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <ui:ScrollViewerEx Grid.Row="1" MaxWidth="550" HorizontalAlignment="Left" Margin="10 0">
-                <ItemsControl ItemsSource="{Binding PreviewPage}"
-                     Background="Gray">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="5 10 10 10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" MinWidth="150" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Image}" Height="250" Width="250">
-                                    <Image.RenderTransform>
-                                        <RotateTransform Angle="{Binding Orientation}"/>
-                                    </Image.RenderTransform>
-                                    <Image.RenderTransformOrigin>
-                                        <Point X="0.5" Y="0.5"/>
-                                    </Image.RenderTransformOrigin>
-                                </Image>
-                                <StackPanel Grid.Column="1" Margin="12 0 0 0">
-                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                        <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding Page}"  FontWeight="Bold"/>
-                                        <TextBlock Text=" / "  FontWeight="Bold"/>
-                                        <TextBlock Text="{Binding TotalPage}"  FontWeight="Bold"/>
-                                    </StackPanel>
-                                    <CheckBox IsChecked="{Binding Selected}" Margin="0 0 0 5" Content="{x:Static resx:Resources.Select}"></CheckBox>
-                                    <ui:NumberBox Value="{Binding Orientation}"
-                                          HorizontalAlignment="Left"
-                                          Width="150"
-                                          Header="{x:Static resx:Resources.RotationDegree}"
-                                          Maximum="270" Minimum="-270" SmallChange="90" LargeChange="90" SpinButtonPlacementMode="Inline">
-                                    </ui:NumberBox>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ui:ScrollViewerEx>
+            <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" FontWeight="Bold" Margin="10 0 0 0"/>
 
-            <!--<Slider Grid.Column="1" Margin="10"
-                TickPlacement="BottomRight"
-                Value="{Binding ExtractFromPage}"
-                IsSnapToTickEnabled="True"
-                AutoToolTipPlacement="TopLeft"
-                Minimum="1" Maximum="{Binding TotalPage}">
-                <ui:ControlHelper.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Từ trang: " VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding ExtractFromPage}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ui:ControlHelper.Header>
-            </Slider>
-            <Slider Grid.Row="2" Margin="10"
-                TickPlacement="BottomRight"
-                Value="{Binding ExtractToPage}"
-                IsSnapToTickEnabled="True"
-                AutoToolTipPlacement="TopLeft"
-                Minimum="{Binding MinimumSliderToPage}" Maximum="{Binding TotalPage}">
-                <ui:ControlHelper.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Đến trang: " VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding ExtractToPage}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </ui:ControlHelper.Header>
-            </Slider>-->
+            <Button Grid.Column="1" VerticalAlignment="Center" Margin="5 0"
+                Command="{Binding SelectFileCommand}" Content="{Binding LbSelectFile}" IsEnabled="{Binding IsSelectButtonEnabled, UpdateSourceTrigger=PropertyChanged}"></Button>
         </Grid>
 
-        <Button Grid.Row="3" Margin="10 10 0 0" Command="{Binding ExtractPdfPageCommand}"
-                Style="{StaticResource AccentButtonStyle}"
-                Content="{x:Static resx:Resources.ExtractPage}"></Button>
+        <Border Grid.Row="1" CornerRadius="10" BorderThickness="1" Padding="10"
+                Visibility="{Binding IsPdfLoaded, Converter={StaticResource Bool2VisibilityConverter}}"
+                BorderBrush="{DynamicResource SystemControlForegroundChromeGrayBrush}"
+                Background="{StaticResource SystemControlBackgroundBaseLowBrush}">
+                <ui:ScrollViewerEx MinWidth="550"
+                                   HorizontalScrollBarVisibility="Auto"
+                               HorizontalAlignment="Stretch" Margin="10 0">
+                    <ItemsControl ItemsSource="{Binding PreviewPage}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Source="{Binding Image}"
+                                           Height="{Binding ElementName=SliderZoomView, Path=Value}"
+                                           Width="{Binding ElementName=SliderZoomView, Path=Value}">
+                                        <Image.RenderTransform>
+                                            <RotateTransform Angle="{Binding Orientation}"/>
+                                        </Image.RenderTransform>
+                                        <Image.RenderTransformOrigin>
+                                            <Point X="0.5" Y="0.5"/>
+                                        </Image.RenderTransformOrigin>
+                                    </Image>
+                                    <StackPanel HorizontalAlignment="Center" Margin="0 5">
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel Orientation="Horizontal" Margin="0 5">
+                                                <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding Page}"  FontWeight="Bold"/>
+                                                <TextBlock Text=" / "  FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding TotalPage}"  FontWeight="Bold"/>
+                                            </StackPanel>
+
+                                            <CheckBox IsChecked="{Binding Selected}" Margin="10 0 0 0" Content="{x:Static resx:Resources.Select}"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button ToolTip="{x:Static resx:Resources.RotateLeft}"
+                                                Command="{Binding DataContext.RotateLeftCommand, RelativeSource={RelativeSource AncestorType=ui:Page}}" CommandParameter="{Binding}">
+                                                    <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                                                </Button>
+                                                <Button Margin="5 0 0 0" ToolTip="{x:Static resx:Resources.RotateRight}"
+                                                    Command="{Binding DataContext.RotateRightCommand, RelativeSource={RelativeSource AncestorType=ui:Page}}" CommandParameter="{Binding}">
+                                                    <ui:FontIcon Glyph="&#xe72c;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                                                </Button>
+                                            </StackPanel>
+                                        </StackPanel>
+   
+                                    </StackPanel>
+
+
+                                </StackPanel>
+                              
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ui:ScrollViewerEx>
+            </Border>
+
+        <Grid Grid.Row="3" Visibility="{Binding IsPdfLoaded, Converter={StaticResource Bool2VisibilityConverter}}">
+            <Button Grid.Row="3" Margin="10 10 0 0" Command="{Binding ExtractPdfPageCommand}"
+                Style="{StaticResource AccentButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <ui:FontIcon FontFamily="{StaticResource SegoeFluentIcons}" Glyph="&#xe8a7;"/>
+                    <TextBlock Text="{x:Static resx:Resources.ExtractPage}" Margin="10 0 0 0"/>
+                </StackPanel>
+            </Button>
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Right">
+                <ui:FontIcon Glyph="&#xe71f;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                <Slider x:Name="SliderZoomView" Margin="5 0 5 0"  Grid.Row="2" Maximum="1500" Minimum="250" Value="450" Width="150"></Slider>
+                <ui:FontIcon Glyph="&#xe8a3;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </ui:Page>

@@ -30,11 +30,13 @@ namespace PdfExtraTool.Common
             };
 
 
+
             if (o.ShowDialog() == true)
             {
                 //IsOpeningFile = true;
                 IsLoading = true;
                 SelectedFile = o.FileName;
+
                 try
                 {
                     await Task.Run(() =>
@@ -84,6 +86,7 @@ namespace PdfExtraTool.Common
 
                 IsLoading = false;
             }
+
         }
 
         public async Task Open(string fileName)

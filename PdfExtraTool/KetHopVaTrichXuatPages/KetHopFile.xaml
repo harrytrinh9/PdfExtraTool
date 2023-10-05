@@ -9,6 +9,7 @@
       xmlns:converters="clr-namespace:PdfExtraTool.Converters"
       xmlns:resx="clr-namespace:PdfExtraTool.Properties"
       d:DataContext="{d:DesignInstance Type=vm:KetHopViewModel}"
+      d:Background="White"
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="KetHopFile">
@@ -32,7 +33,7 @@
             </Grid.ColumnDefinitions>
             <Button  Command="{Binding AddFileToListCommand}">
                 <StackPanel Orientation="Horizontal">
-                    <ui:FontIcon Glyph="&#xe710;"/>
+                    <ui:FontIcon Glyph="&#xecc8;" FontFamily="{StaticResource SegoeFluentIcons}"/>
                     <TextBlock Text="{x:Static resx:Resources.AddFile}" Margin="5 0"/>
                 </StackPanel>
             </Button>
@@ -71,6 +72,13 @@
                      Margin="10 0">
 
         </PasswordBox>-->
-        <Button Grid.Row="4" Margin="10 10" Command="{Binding MergePdfCommand}" Content="{x:Static resx:Resources.MergeFiles}"></Button>
+        <Button Grid.Row="4" Margin="10 10" 
+                Style="{StaticResource AccentButtonStyle}"
+                Command="{Binding MergePdfCommand}">
+            <StackPanel Orientation="Horizontal">
+                <ui:FontIcon Glyph="&#xea3c;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                <TextBlock Text="{x:Static resx:Resources.MergeFiles}" Margin="10 0 0 0"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </ui:Page>

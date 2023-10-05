@@ -12,7 +12,44 @@
       d:Background="White"
       Title="AboutPage">
 
-    <Grid>
-        
+    <Grid Margin="20">
+        <StackPanel>
+            <TextBlock FontWeight="Bold" FontSize="20">PDF Extra tool</TextBlock>
+            <TextBlock>
+                <Run Text="{x:Static properties:Resources.AppVersion}"></Run>
+                <Run x:Name="lbAppVersion"></Run>
+            </TextBlock>
+            <TextBlock Text="{x:Static properties:Resources.CopyRight}">
+                
+            </TextBlock>
+            <TextBlock Text="{x:Static properties:Resources.Contacts}" FontSize="15" Margin="0 10 0 5"/>
+            
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="&#xee75;" FontFamily="{StaticResource Icons54}" VerticalAlignment="Center" FontSize="20" Margin="10 0"/>
+                <ui:HyperlinkButton NavigateUri="mailto://harrytrinh9@gmail.com" VerticalAlignment="Center">
+                    harrytrinh9@gmail.com
+                </ui:HyperlinkButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <TextBlock Text="&#xed8a;" FontFamily="{StaticResource Icons54}" VerticalAlignment="Center" FontSize="20" Margin="10 0"/>
+                <ui:HyperlinkButton NavigateUri="https://github.com/harrytrinh9/PdfExtraTool" VerticalAlignment="Center">
+                    https://github.com/harrytrinh9/PdfExtraTool
+                </ui:HyperlinkButton>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0 3">
+                <TextBlock Text="&#xeacc;" FontFamily="{StaticResource Icomoon}" VerticalAlignment="Center" FontSize="20" Margin="10 0"/>
+                <ui:HyperlinkButton NavigateUri="https://t.me/harrytrinh" VerticalAlignment="Center">
+                    https://t.me/harrytrinh
+                </ui:HyperlinkButton>
+            </StackPanel>
+
+            <TextBlock Text="Credits" FontSize="15" Margin="0 10 0 5"/>
+            <StackPanel Margin="5 0 0 0">
+                <TextBlock>- ModernWpf</TextBlock>
+                <TextBlock>- iText7</TextBlock>
+            </StackPanel>
+            <TextBlock Text="{x:Static properties:Resources.ThanksLeter}" Margin="0 10"/>
+        </StackPanel>
+
     </Grid>
 </ui:Page>

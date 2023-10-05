@@ -98,6 +98,10 @@ namespace PdfExtraTool.View
             {
                 NavView.SelectedItem = NavView.SettingsItem;
             }
+            else if(e.SourcePageType() == typeof(AboutPage))
+            {
+                NavView.SelectedItem = NavView.FooterMenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => GetPageType(x) == e.SourcePageType());
+            }
             else
             {
                 NavView.SelectedItem = NavView.MenuItems.OfType<NavigationViewItem>().FirstOrDefault(x => GetPageType(x) == e.SourcePageType());

@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using ModernWpf.Controls;
 using MVVMHelper;
 using PdfExtraTool.Common;
+using PdfExtraTool.Properties;
 using PdfRenderByHarryTrinhWpf;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,11 @@ namespace PdfExtraTool.ViewModel
     public class TrichXuatViewModel: ViewModelBase
     {
         private string _selectedFile;
+        private string _lbSelectFile = Properties.Resources.SelectPdfFile;
         private ICommand _selectFileCommand;
         private bool _isLoading;
+        private bool _isPdfLoaded;
+        private bool _isSelectButtonEnabled = true;
         private string openPdfPassword;
         private string _protectPassword;
         private int _totalPage;
@@ -27,6 +31,8 @@ namespace PdfExtraTool.ViewModel
         private int _extractToPage = 1;
         private int _minimumSliderToPage = 1;
         private ICommand _extractPdfPageCommand;
+        private ICommand _rotateRightCommand;
+        private ICommand _rotateLeftCommand;
         private ObservableCollection<PdfPreview> _previewPage = new ObservableCollection<PdfPreview>();
 
 
@@ -73,7 +79,38 @@ namespace PdfExtraTool.ViewModel
             set => _extractPdfPageCommand = value;
         }
 
+        public ICommand RotateRightCommand
+        {
+            get
+            {
+                if (_rotateRightCommand == null)
+                {
+                    _rotateRightCommand = new RelayCommand(p => RotateRight(p));
+                }
+                return _rotateRightCommand;
+            }
+            set => _rotateRightCommand = value;
+        }
+
+        public ICommand RotateLeftCommand
+        {
+            get
+            {
+                if (_rotateLeftCommand == null)
+                {
+                    _rotateLeftCommand = new RelayCommand(p => RotateLeft(p));
+                }
+                return _rotateLeftCommand;
+            }
+            set => _rotateLeftCommand = value;
+        }
+
+
         public ObservableCollection<PdfPreview> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
+        public bool IsPdfLoaded { get => _isPdfLoaded; set => Set(ref _isPdfLoaded, value); }
+        public bool IsSelectButtonEnabled { get => _isSelectButtonEnabled; set => Set(ref _isSelectButtonEnabled, value); }
+        public string LbSelectFile { get => _lbSelectFile; set => Set(ref _lbSelectFile, value); }
+
         private async void SelectFile()
         {
             PreviewPage.Clear();
@@ -83,12 +120,13 @@ namespace PdfExtraTool.ViewModel
             SelectedFile = openPdf.SelectedFile;
             if (string.IsNullOrEmpty(SelectedFile))
             {
+                IsLoading = false;
                 return;
             }
 
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
-
+            LbSelectFile = Resources.ChangePDFFile;
 
             RenderPdf render = new RenderPdf
             {
@@ -113,6 +151,19 @@ namespace PdfExtraTool.ViewModel
 
             }
             IsLoading = false;
+            IsPdfLoaded = true;
+        }
+
+        private void RotateRight(object o)
+        {
+            PdfPreview page = (PdfPreview)o;
+            page.Orientation += 90;
+        }
+
+        private void RotateLeft(object o)
+        {
+            PdfPreview page = (PdfPreview)o;
+            page.Orientation -= 90;
         }
 
         private async void ExtractPdfPage()
