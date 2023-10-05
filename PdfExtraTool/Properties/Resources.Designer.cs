@@ -61,6 +61,15 @@ namespace PdfExtraTool.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add file.
         /// </summary>
         public static string AddFile {
@@ -435,6 +444,15 @@ namespace PdfExtraTool.Properties {
         public static string Options {
             get {
                 return ResourceManager.GetString("Options", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outline marker.
+        /// </summary>
+        public static string OutlineMarker {
+            get {
+                return ResourceManager.GetString("OutlineMarker", resourceCulture);
             }
         }
         

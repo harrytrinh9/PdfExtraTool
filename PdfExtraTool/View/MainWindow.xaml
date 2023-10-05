@@ -10,6 +10,7 @@
         xmlns:ChungPages="clr-namespace:PdfExtraTool.ChungPages"
         xmlns:BaoMatPages="clr-namespace:PdfExtraTool.BaoMatPages"
         xmlns:KetHopVaTrichXuatPages="clr-namespace:PdfExtraTool.KetHopVaTrichXuatPages"
+        xmlns:views="clr-namespace:PdfExtraTool.View"
         xmlns:properties="clr-namespace:PdfExtraTool.Properties"
         d:DataContext="{d:DesignInstance Type=viewmodel:MainWindowViewModel}"
         mc:Ignorable="d"
@@ -116,6 +117,13 @@
             </ui:NavigationView.MenuItems>
 
             <ui:Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
+            <ui:NavigationView.FooterMenuItems>
+                <ui:NavigationViewItem Content="{x:Static properties:Resources.About}" Tag="{x:Type views:AboutPage}">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:FontIcon Glyph="&#xe946;" FontFamily="{StaticResource SegoeFluentIcons}"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+            </ui:NavigationView.FooterMenuItems>
         </ui:NavigationView>
     </Grid>
 </Window>

@@ -27,6 +27,9 @@
             <FontFamily x:Key="SegoeFluentIcons">
                 pack://application:,,,/PdfExtraTool;component/Assets/Fonts/#Segoe Fluent Icons
             </FontFamily>
+            <FontFamily x:Key="Icons54">
+                pack://application:,,,/PdfExtraTool;component/Assets/Fonts/#icon54com
+            </FontFamily>
         </ResourceDictionary>
         
     </Application.Resources>

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PdfExtraTool.CustomControls"
+             d:DataContext="{d:DesignInstance Type=local:RotationControlBox}"
              xmlns:ui="http://schemas.modernwpf.com/2019"
              mc:Ignorable="d">
     <Grid>
@@ -14,10 +15,10 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="TxtDegree" MinWidth="50" Text="{Binding Value}"/>
         <Button Grid.Column="1" x:Name="BtnRotateLeft" Margin="5 0 0 0" Click="BtnRotateLeft_Click">
-            <ui:FontIcon Glyph="&#xe777;"/>
+            <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}"/>
         </Button>
         <Button Grid.Column="2" x:Name="BtnRotateRight" Margin="5 0 0 0" Click="BtnRotateRight_Click">
-            <ui:FontIcon Glyph="&#xe72c;"/>
+            <ui:FontIcon Glyph="&#xe72c;" FontFamily="{StaticResource SegoeFluentIcons}"/>
         </Button>
     </Grid>
 </UserControl>

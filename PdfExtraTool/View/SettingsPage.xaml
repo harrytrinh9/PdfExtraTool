@@ -44,7 +44,7 @@
             <StackPanel>
                 <TextBlock>This application was created by: Harry Trinh</TextBlock>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Github: " VerticalAlignment="Center"/>
+                    <TextBlock Text="&#xed8a;" FontFamily="{StaticResource Icons54}" VerticalAlignment="Center" FontSize="20"/>
                     <ui:HyperlinkButton Margin="5 0 0 0" NavigateUri="https://github.com/harrytrinh9/PdfExtraTool">https://github.com/harrytrinh9/PdfExtraTool</ui:HyperlinkButton>
                 </StackPanel>
             </StackPanel>

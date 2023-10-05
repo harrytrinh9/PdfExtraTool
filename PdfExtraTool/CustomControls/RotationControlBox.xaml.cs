@@ -26,16 +26,25 @@ namespace PdfExtraTool.CustomControls
         public static readonly DependencyProperty ValueProperty =
         DependencyProperty.Register("Value", typeof(int), typeof(RotationControlBox));
 
+        public static readonly DependencyProperty OrientationProperty =
+        DependencyProperty.Register("Orientation", typeof(int), typeof(RotationControlBox));
+
         public int Value
         {
             get { return (int)GetValue(ValueProperty); }
             set { SetValue(ValueProperty, value); }
         }
 
+        public int Orientation
+        {
+            get { return (int)GetValue(OrientationProperty); }
+            set { SetValue(OrientationProperty, value); }
+        }
+
         public RotationControlBox()
         {
             InitializeComponent();
-            //DataContext = this;
+            DataContext = this;
             TxtDegree.Text = "0";
             TxtDegree.TextChanged += TxtDegree_TextChanged;
         }
@@ -50,11 +59,13 @@ namespace PdfExtraTool.CustomControls
         {
             var deg = int.Parse(TxtDegree.Text);
             TxtDegree.Text = (deg += 90).ToString();
+            Orientation += 90;
             //Value -= 90;
         }
 
         private void BtnRotateRight_Click(object sender, RoutedEventArgs e)
         {
+            Orientation += 90;
             var deg = int.Parse(TxtDegree.Text);
             TxtDegree.Text = (deg -= 90).ToString();
             //if (Value < 270)
