@@ -243,6 +243,9 @@
   <data name="Options" xml:space="preserve">
     <value>Tùy chọn</value>
   </data>
+  <data name="OutlineMarker" xml:space="preserve">
+    <value>Đánh chỉ mục</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
   </data>

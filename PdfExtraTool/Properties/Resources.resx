@@ -243,6 +243,9 @@
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="OutlineMarker" xml:space="preserve">
+    <value>Outline marker</value>
+  </data>
   <data name="Page" xml:space="preserve">
     <value>Page</value>
   </data>

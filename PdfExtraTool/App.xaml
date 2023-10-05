@@ -24,6 +24,9 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Other app resources here -->
             <BooleanToVisibilityConverter x:Key="Bool2VisibilityConverter"/>
+            <FontFamily x:Key="SegoeFluentIcons">
+                pack://application:,,,/PdfExtraTool;component/Assets/Fonts/#Segoe Fluent Icons
+            </FontFamily>
         </ResourceDictionary>
         
     </Application.Resources>

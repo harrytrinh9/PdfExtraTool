@@ -29,6 +29,7 @@
         <DataTemplate x:Key="NavigationViewHeaderTemplate">
             <TextBlock Text="{Binding}" Margin="12,32,0,0" />
         </DataTemplate>
+        
     </Window.Resources>
 
     <Grid>
@@ -74,41 +75,41 @@
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.NavigationViewGroup1}" />
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.Paging}" Tag="{x:Type ChungPages:DanhSoTrang}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xeca5;" />
+                        <ui:FontIcon Glyph="&#xeca5;" FontFamily="{StaticResource SegoeFluentIcons}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.Stamp}" Tag="{x:Type ChungPages:DongDau}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe70a;" />
+                        <ui:FontIcon Glyph="&#xe70a;" FontFamily="{StaticResource SegoeFluentIcons}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.PageRotate}" Tag="{x:Type ChungPages:LatTrang}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe777;" />
+                        <ui:FontIcon Glyph="&#xe777;" FontFamily="{StaticResource SegoeFluentIcons}" />
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
 
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.NavigationViewGroup2}" />
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.SetPassword}" Tag="{x:Type BaoMatPages:DatMatKhau}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe72e;"/>
+                        <ui:FontIcon Glyph="&#xe72e;" FontFamily="{StaticResource SegoeFluentIcons}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.UnsetPassword}" Tag="{x:Type BaoMatPages:GoMatKhau}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xe785;"/>
+                        <ui:FontIcon Glyph="&#xe785;" FontFamily="{StaticResource SegoeFluentIcons}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.NavigationViewGroup3}" />
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.MergeFiles}" Tag="{x:Type KetHopVaTrichXuatPages:KetHopFile}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xf571;"/>
+                        <ui:FontIcon Glyph="&#xf571;" FontFamily="{StaticResource SegoeFluentIcons}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItem Content="{x:Static properties:Resources.ExtractPage}" Tag="{x:Type KetHopVaTrichXuatPages:TrichXuat}">
                     <ui:NavigationViewItem.Icon>
-                        <ui:FontIcon Glyph="&#xf406;"/>
+                        <ui:FontIcon Glyph="&#xf406;" FontFamily="{StaticResource SegoeFluentIcons}"/>
                     </ui:NavigationViewItem.Icon>
                 </ui:NavigationViewItem>
                 <ui:NavigationViewItemHeader Content="{x:Static properties:Resources.Help}" />

@@ -263,6 +263,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\Fonts\Segoe Fluent Icons.ttf" />
+    <Resource Include="Assets\Fonts\icomoon.ttf" />
+    <Resource Include="Assets\Fonts\Icon54.ttf" />
+    <Resource Include="Assets\Fonts\icon54com.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

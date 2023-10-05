@@ -10,6 +10,7 @@
       mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
       d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
+      d:Background="White"
       Title="SettingsPage">
     <Grid Margin="10">
         <Grid.RowDefinitions>
