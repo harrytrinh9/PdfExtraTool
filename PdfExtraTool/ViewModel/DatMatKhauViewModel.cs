@@ -73,7 +73,7 @@ namespace PdfExtraTool.ViewModel
             IsLoading = true;
             await openPdf.Open().ConfigureAwait(true);
             IsLoading = openPdf.IsLoading;
-            SelectedFile = openPdf.SelectedFile;
+            SelectedFile = openPdf.FileName;
             _openPassword = openPdf.OpenPdfPassword;
             IsLoading = false;
         }

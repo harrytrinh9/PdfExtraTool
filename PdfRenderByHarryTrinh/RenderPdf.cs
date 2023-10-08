@@ -56,7 +56,9 @@ namespace PdfRenderByHarryTrinhWpf
                     {
                         Page = (int)i+1,
                         Image = imageSource,
-                        TotalPage = (int)totalPage
+                        TotalPage = (int)totalPage,
+                        PageWidth = (float)imageSource.Width,
+                        PageHeight = (float)imageSource.Height,
                     });
                 }
             }
@@ -71,10 +73,17 @@ namespace PdfRenderByHarryTrinhWpf
         private int page;
         private int totalPage;
         private BitmapImage image;
+        private float pageWidth;
+        private float pageHeight;
+        private int orientation;
 
         public int Page { get => page; set => Set(ref page, value); }
         public int TotalPage { get => totalPage; set => Set(ref totalPage, value); }
         public BitmapImage Image { get => image; set => Set(ref image, value); }
+        public float PageWidth { get => pageWidth; set => Set(ref pageWidth, value); }
+        public float PageHeight { get => pageHeight; set => Set(ref pageHeight, value); }
+        public bool IsPortrait { get => PageHeight > PageWidth; }
+        public int Orientation { get => orientation; set => Set(ref orientation, value); }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)

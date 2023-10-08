@@ -197,6 +197,9 @@
     <Compile Include="ChungPages\LatTrang.xaml.cs">
       <DependentUpon>LatTrang.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChungPages\OutlineMarkerPage.xaml.cs">
+      <DependentUpon>OutlineMarkerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Common\DispatcherHelper.cs" />
     <Compile Include="Common\MsgBox.cs" />
     <Compile Include="Common\OpenPdf.cs" />
@@ -233,6 +236,7 @@
     <Compile Include="ViewModel\KetHopViewModel.cs" />
     <Compile Include="ViewModel\LatTrangViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\OutlineMarkerViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\TrichXuatViewModel.cs" />
     <Compile Include="View\AboutPage.xaml.cs">
@@ -298,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChungPages\LatTrang.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChungPages\OutlineMarkerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -164,7 +164,7 @@ namespace PdfExtraTool.ViewModel
             //IsLoading = openPdf.IsLoading;
             await openPdf.Open().ConfigureAwait(true);
             //IsLoading = openPdf.IsLoading;
-            SelectedFile = openPdf.SelectedFile;
+            SelectedFile = openPdf.FileName;
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
 

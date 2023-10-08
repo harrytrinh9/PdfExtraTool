@@ -1,0 +1,35 @@
+﻿<ui:Page x:Class="PdfExtraTool.ChungPages.OutlineMarkerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PdfExtraTool.ChungPages"
+      xmlns:ui="http://schemas.modernwpf.com/2019"
+      xmlns:vm="clr-namespace:PdfExtraTool.ViewModel"
+      xmlns:resx="clr-namespace:PdfExtraTool.Properties"
+      xmlns:converter="clr-namespace:PdfExtraTool.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      d:Background="White"
+      d:DataContext="{d:DesignInstance Type=vm:OutlineMarkerViewModel}"
+      Title="OutlineMarkerPage">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="10 0 10 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding SelectedFile, Converter={StaticResource FileNameCvt}}" FontWeight="Bold" Margin="10 0 0 0"/>
+
+            <Button Grid.Column="1" VerticalAlignment="Center" Margin="5 0"
+                Command="{Binding SelectFileCommand}" Content="{Binding LbSelectFile}" IsEnabled="{Binding IsSelectButtonEnabled, UpdateSourceTrigger=PropertyChanged}"></Button>
+        </Grid>
+    </Grid>
+</ui:Page>

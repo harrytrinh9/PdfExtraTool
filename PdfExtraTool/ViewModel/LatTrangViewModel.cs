@@ -1,4 +1,5 @@
-﻿using iText.Kernel.Pdf;
+﻿using iText.IO.Source;
+using iText.Kernel.Pdf;
 using iText.StyledXmlParser.Jsoup.Nodes;
 using Microsoft.Win32;
 using ModernWpf.Controls;
@@ -11,11 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+
 
 namespace PdfExtraTool.ViewModel
 {
@@ -32,7 +35,7 @@ namespace PdfExtraTool.ViewModel
         private int _totalPage;
         private ICommand _saveFileCommand;
         //private List<PdfPageView> _previewPdf;
-        private ObservableCollection<PdfPreview> _previewPage = new ObservableCollection<PdfPreview>();
+        private ObservableCollection<PdfPageView> _previewPage = new ObservableCollection<PdfPageView>();
         private ICommand _rotateRightCommand;
         private ICommand _rotateLeftCommand;
 
@@ -66,7 +69,7 @@ namespace PdfExtraTool.ViewModel
             set => _saveFileCommand = value;
         }
         //public List<PdfPageView> PreviewPdf { get => _previewPdf; set => Set(ref _previewPdf, value); }
-        public ObservableCollection<PdfPreview> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
+        public ObservableCollection<PdfPageView> PreviewPage { get => _previewPage; set => Set(ref _previewPage, value); }
         public ICommand RotateRightCommand
         {
             get
@@ -98,13 +101,13 @@ namespace PdfExtraTool.ViewModel
 
         private void RotateRight(object o)
         {
-            PdfPreview page = (PdfPreview)o;
+            PdfPageView page = (PdfPageView)o;
             page.Orientation += 90;
         }
 
         private void RotateLeft(object o)
         {
-            PdfPreview page = (PdfPreview)o;
+            PdfPageView page = (PdfPageView)o;
             page.Orientation -= 90;
         }
 
@@ -116,18 +119,18 @@ namespace PdfExtraTool.ViewModel
             IsLoading = true;
             IsSelectButtonEnabled = false;
             await openPdf.Open().ConfigureAwait(true);
-            SelectedFile = openPdf.SelectedFile;
+            SelectedFile = openPdf.FileName;
             if (string.IsNullOrEmpty(SelectedFile))
             {
                 IsLoading = false;
                 IsSelectButtonEnabled= true;
                 return;
             }
-
             openPdfPassword = openPdf.OpenPdfPassword;
             TotalPage = openPdf.TotalPage;
-
             LbSelectFile = Resources.ChangePDFFile;
+
+
             RenderPdf render = new RenderPdf
             {
                 FilePath = SelectedFile,
@@ -138,14 +141,14 @@ namespace PdfExtraTool.ViewModel
             {
                 App.Current.Dispatcher.Invoke(() =>
                 {
-                    PreviewPage.Add(new PdfPreview
-                    {
-                        Image = item.Image,
-                        Page = item.Page,
-                        TotalPage = item.TotalPage,
-                        Orientation = 0
-
-                    });
+                    //PreviewPage.Add(new PdfPageView
+                    //{
+                    //    Image = item.Image,
+                    //    Page = item.Page,
+                    //    TotalPage = item.TotalPage,
+                    //    Orientation = 0
+                    //});
+                    PreviewPage.Add(item);
                 });
 
             }
@@ -212,6 +215,7 @@ namespace PdfExtraTool.ViewModel
         private BitmapImage image;
         private int orientation;
         private bool selected;
+
 
         public int Page { get => page; set => Set(ref page, value); }
         public int TotalPage { get => totalPage; set => Set(ref totalPage, value); }

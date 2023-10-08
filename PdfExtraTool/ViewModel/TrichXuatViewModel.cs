@@ -117,7 +117,7 @@ namespace PdfExtraTool.ViewModel
             var openPdf = new OpenPdf();
             IsLoading = true;
             await openPdf.Open().ConfigureAwait(true);
-            SelectedFile = openPdf.SelectedFile;
+            SelectedFile = openPdf.FileName;
             if (string.IsNullOrEmpty(SelectedFile))
             {
                 IsLoading = false;

@@ -1,11 +1,15 @@
-﻿using iText.Kernel.Exceptions;
+﻿using iText.IO.Source;
+using iText.Kernel.Exceptions;
 using iText.Kernel.Pdf;
 using Microsoft.Win32;
 using ModernWpf.Controls;
 using ModernWpf.Controls.Primitives;
 using PdfExtraTool.Properties;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +19,7 @@ namespace PdfExtraTool.Common
 {
     public class OpenPdf
     {
-        public string SelectedFile { get; set; }
+        public string FileName { get; set; }
         public bool IsLoading { get; set; }
         public int TotalPage { get; set; }
         public string OpenPdfPassword { get; set; }
@@ -33,15 +37,24 @@ namespace PdfExtraTool.Common
 
             if (o.ShowDialog() == true)
             {
+
                 //IsOpeningFile = true;
                 IsLoading = true;
-                SelectedFile = o.FileName;
+                FileName = o.FileName;
+
+                MemoryStream stream = new MemoryStream();
+                FileStream file = new FileStream(FileName, FileMode.Open, FileAccess.Read);
+                file.CopyTo(stream);
+                file.Close();
+
+                IRandomAccessSource source = new RandomAccessSourceFactory().CreateSource(stream.ToArray());
 
                 try
                 {
                     await Task.Run(() =>
                     {
-                        var pdfReader = new PdfReader(SelectedFile);
+                        //var pdfReader = new PdfReader(FileName);
+                        var pdfReader = new PdfReader(source, new ReaderProperties());
                         pdfReader.SetUnethicalReading(true);
                         var pdfDoc = new PdfDocument(pdfReader);
                         TotalPage = pdfDoc.GetNumberOfPages();
@@ -56,7 +69,7 @@ namespace PdfExtraTool.Common
                         OpenPdfPassword = await MsgBox.ShowInputPassword(Resources.PasswordRequirement).ConfigureAwait(true);
                         if (OpenPdfPassword.Length == 0)
                         {
-                            SelectedFile = null;
+                            FileName = null;
                             IsLoading = false;
                             return;
                         }
@@ -65,7 +78,7 @@ namespace PdfExtraTool.Common
                         {
                             await Task.Run(() =>
                             {
-                                var pdfReader = new PdfReader(SelectedFile,
+                                var pdfReader = new PdfReader(FileName,
                                 new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(OpenPdfPassword)));
                                 pdfReader.SetUnethicalReading(true);
                                 PdfDocument pdfDoc = new PdfDocument(pdfReader);
@@ -78,13 +91,21 @@ namespace PdfExtraTool.Common
                         catch
                         {
                             await MsgBox.Show(Resources.WrongPassword, Resources.UnableToOpenFile).ConfigureAwait(true);
-                            SelectedFile = null;
+                            FileName = null;
                         }
 
                     }
                 }
-
+                finally
+                {
+                    source.Close();
+                    stream.Dispose();
+                }
                 IsLoading = false;
+#if DEBUG
+                Debug.WriteLine("File loaded, total Page {0}", TotalPage);
+#endif
+
             }
 
         }
@@ -92,12 +113,12 @@ namespace PdfExtraTool.Common
         public async Task Open(string fileName)
         {
             IsLoading = true;
-            SelectedFile = fileName;
+            FileName = fileName;
             try
             {
                 await Task.Run(() =>
                 {
-                    var pdfReader = new PdfReader(SelectedFile);
+                    var pdfReader = new PdfReader(FileName);
                     pdfReader.SetUnethicalReading(true);
                     var pdfDoc = new PdfDocument(pdfReader);
                     TotalPage = pdfDoc.GetNumberOfPages();
@@ -112,7 +133,7 @@ namespace PdfExtraTool.Common
                     OpenPdfPassword = await MsgBox.ShowInputPassword(Resources.PasswordRequirement).ConfigureAwait(true);
                     if (OpenPdfPassword.Length == 0)
                     {
-                        SelectedFile = null;
+                        FileName = null;
                         IsLoading = false;
                         return;
                     }
@@ -121,7 +142,7 @@ namespace PdfExtraTool.Common
                     {
                         await Task.Run(() =>
                         {
-                            var pdfReader = new PdfReader(SelectedFile,
+                            var pdfReader = new PdfReader(FileName,
                             new ReaderProperties().SetPassword(Encoding.UTF8.GetBytes(OpenPdfPassword)));
                             pdfReader.SetUnethicalReading(true);
                             PdfDocument pdfDoc = new PdfDocument(pdfReader);
@@ -134,7 +155,7 @@ namespace PdfExtraTool.Common
                     catch
                     {
                         await MsgBox.Show(Resources.WrongPassword, Resources.UnableToOpenFile).ConfigureAwait(true);
-                        SelectedFile = null;
+                        FileName = null;
                     }
 
                 }

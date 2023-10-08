@@ -52,15 +52,28 @@
                         <DataTemplate>
                             <Grid Margin="10">
                                 <StackPanel>
-                                    <Image Source="{Binding Image}" Height="{Binding ElementName=SliderZoomView, Path=Value}"
-                                   Width="{Binding ElementName=SliderZoomView, Path=Value}">
-                                        <Image.RenderTransform>
-                                            <RotateTransform Angle="{Binding Orientation}"/>
-                                        </Image.RenderTransform>
-                                        <Image.RenderTransformOrigin>
-                                            <Point X="0.5" Y="0.5"/>
-                                        </Image.RenderTransformOrigin>
-                                    </Image>
+                                    <Border BorderThickness="1" BorderBrush="Black">
+                                        <Image Source="{Binding Image}" Height="{Binding ElementName=SliderZoomView, Path=Value}" 
+                                            Width="{Binding ElementName=SliderZoomView, Path=Value}">
+                                            <Image.RenderTransform>
+                                                <RotateTransform Angle="{Binding Orientation}"/>
+                                            </Image.RenderTransform>
+                                            <Image.RenderTransformOrigin>
+                                                <Point X="0.5" Y="0.5"/>
+                                            </Image.RenderTransformOrigin>
+                                        </Image>
+                                    </Border>
+
+                                    <Expander Header="Info" HorizontalAlignment="Center" Background="White">
+                                        <!--<TextBox Margin="10 0"
+                                                 Width="{Binding ElementName=SliderZoomView, Path=Value}"/>-->
+                                       
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding PageWidth, StringFormat='Width {0}'}"/>
+                                            <TextBlock Text="{Binding PageHeight, StringFormat='Height {0}'}"/>
+                                            <TextBlock Text="{Binding IsPortrait, StringFormat='Is portrait: {0}'}"/>
+                                        </StackPanel>
+                                    </Expander>
                                     <StackPanel HorizontalAlignment="Center">
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                             <TextBlock Text="{x:Static resx:Resources.Page}" Margin="0 0 5 0" FontWeight="Bold"/>
@@ -107,7 +120,10 @@
             </Button>
             <StackPanel Orientation="Horizontal" Margin="0 0 10 0" HorizontalAlignment="Right">
                 <ui:FontIcon Glyph="&#xe71f;" FontFamily="{StaticResource SegoeFluentIcons}"/>
-                <Slider x:Name="SliderZoomView" Margin="5 0 5 0"  Grid.Row="2" Maximum="1500" Minimum="250" Value="350" Width="150"></Slider>
+                <Slider x:Name="SliderZoomView" Margin="5 0 5 0"  Grid.Row="2" Maximum="1500" Minimum="250" Value="350" Width="150"
+                        TickPlacement="BottomRight"
+                        TickFrequency="100"
+                        AutoToolTipPlacement="BottomRight"></Slider>
                 <ui:FontIcon Glyph="&#xe8a3;" FontFamily="{StaticResource SegoeFluentIcons}"/>
             </StackPanel>
 
